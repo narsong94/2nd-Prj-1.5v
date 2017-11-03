@@ -15,10 +15,10 @@ public class SpringFreeDao implements FreeDao {
 	private JdbcTemplate template;
 
 	@Override
-	public List<Free> getList(int page) {
-		String sql = "select * from Free limit ?,10";
+	public List<Free> getList(int page, String query) {
+		String sql = "select * from Free where title like ? limit ?,10";
 
-		List<Free> list = template.query(sql, new Object[] { (page - 1) * 10 },
+		List<Free> list = template.query(sql, new Object[] { "%"+query+"%", (page - 1) * 10 },
 				BeanPropertyRowMapper.newInstance(Free.class));
 
 		return list;
@@ -26,7 +26,7 @@ public class SpringFreeDao implements FreeDao {
 
 	@Override
 	public Free getFree(String id) {
-		String sql = "select * from Notice where id = ?";
+		String sql = "select * from Free where id = ?";
 
 		Free free = template.queryForObject(sql, new Object[] { id }, BeanPropertyRowMapper.newInstance(Free.class));
 		return free;

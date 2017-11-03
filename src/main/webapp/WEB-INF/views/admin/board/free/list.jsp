@@ -18,7 +18,7 @@
 				<tr>
 					<td>${f.id}</td>
 					<td><a href="free/${f.id}">${f.title}</a></td>
-					<td>${n.writerId}</td>
+					<td>${f.writerId}</td>
 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${f.date}" />
 					</td>
 					<td>${f.hit}</td>

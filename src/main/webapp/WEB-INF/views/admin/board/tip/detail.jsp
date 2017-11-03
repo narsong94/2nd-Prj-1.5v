@@ -8,19 +8,19 @@
 	<tbody>
 		<tr>
 			<th>제목</th>
-			<td colspan="3">${f.title}</td>
+			<td colspan="2">${t.title}</td>
 		</tr>
 		<tr>
 			<th>작성일</th>
-			<td colspan="3">
-				<fmt:formatDate pattern="yyyy-MM-dd" value="${f.date}" />
+			<td colspan="2">
+				<fmt:formatDate pattern="yyyy-MM-dd" value="${t.date}" />
 			</td>
 		</tr>
 		<tr>
 			<th>작성자</th>
-			<td>${f.writerId}</td>
+			<td>${t.writerId}</td>
 			<th>조회수</th>
-			<td>${f.hit}</td>
+			<td>${t.hit}</td>
 		</tr>
 		<%-- <tr>
 			<th>첨부파일</th>
@@ -32,10 +32,10 @@
 			</td>
 		</tr> --%>
 		<tr class="content">
-			<td colspan="4"><c:forEach var="file" items="${files}"
+			<td colspan="3"><c:forEach var="file" items="${files}"
 					varStatus="s">
 					<img src="upload/${file.src}" />
-				</c:forEach> ${f.content}<br />
+				</c:forEach> ${t.content}<br />
 		</tr>
 	</tbody>
 </table>
@@ -52,7 +52,7 @@
 			<tr>
 				<th>다음글</th>
 				<td colspan="3">
-					<a class="text-blue text-strong" href="${next.id}">${next.title}</a>
+					<a href="${next.id}">${next.title}</a>
 				</td>
 			</tr>
 		</c:if>
@@ -74,7 +74,11 @@
 </table>
 
 <div>
-	<a href="../free">목록</a>
+	<a href="../tip">목록</a>
+</div>
+
+<div>
+	<a href="../tip/${t.id}/edit">수정하기</a>
 </div>
 
 </main>
