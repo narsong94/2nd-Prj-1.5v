@@ -73,6 +73,13 @@ public class SpringInfoDao implements InfoDao{
 		
 		return result;
 	}
+	
+	@Override
+	public int updateHit(String id) {
+		String sql = "update Info set hit = ifnull(hit,0)+1 where id = ?;";
+		
+		return template.update(sql, id);
+	}
 
 	@Override
 	public int insert(Info info) {

@@ -13,6 +13,7 @@ public interface VotingDao {
 	Voting getVotingNext(String id);
 	int getVotingCount();
 	int update(String id, Voting voting);
+	int updateHit(String id);
 	int insert(String title, String content, String writerId);
 	int insert(Voting voting);
 	int getNextId();

@@ -1,5 +1,6 @@
 package com.prj.web.service.admin;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,10 @@ public class BoardService {
 		return freeDao.delete(id);
 	}
 	
+	public int updateFreeHit(String id) {
+		return freeDao.updateHit(id);
+	}
+	
 	/*--------------------------------- Tip 게시판 ---------------------------------*/
 
 	public List<Tip> getTipList(int page, String query) {
@@ -106,6 +111,10 @@ public class BoardService {
 
 	public int tipDel(String id) {
 		return TipDao.delete(id);
+	}
+
+	public int updateTipHit(String id) {
+		return TipDao.updateHit(id);
 	}
 	
 	/*--------------------------------- Info 게시판 ---------------------------------*/
@@ -146,6 +155,10 @@ public class BoardService {
 		return InfoDao.getInfoCount();
 	}
 	
+	public int updateInfoHit(String id) {
+		return InfoDao.updateHit(id);	
+	}
+	
 	/*--------------------------------- Voting 게시판 ---------------------------------*/
 
 	public List<Voting> getVotingList(int page, String query) {
@@ -184,6 +197,10 @@ public class BoardService {
 		return VotingDao.delete(id);
 	}
 	
+	public int updateVotingHit(String id) {
+		return VotingDao.updateHit(id);	
+	}
+	
 	/*--------------------------------- Advice 게시판 ---------------------------------*/
 
 	public List<Advice> getAdviceList(int page, String query) {
@@ -220,5 +237,13 @@ public class BoardService {
 
 	public int adviceDel(String id) {
 		return AdviceDao.delete(id);
+	}
+
+	public int updateAdviceHit(String id) {
+		return AdviceDao.updateHit(id);
+	}
+
+	public List<Advice> getPrevAdviceList(String id, Date date) {
+		return AdviceDao.getPrevAdviceList(id, date);
 	}
 }

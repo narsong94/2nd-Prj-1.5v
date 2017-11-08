@@ -1,5 +1,6 @@
 package com.prj.web.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -13,8 +14,11 @@ public interface AdviceDao {
 	Advice getAdviceNext(String id);
 	int getAdviceCount();
 	int update(String id, Advice advice);
+	int updateHit(String id);
 	int insert(String title, String content, String writerId);
 	int insert(Advice advice);
 	int getNextId();
 	int delete(String id);
+	List<Advice> getPrevAdviceList(String id, Date date);
+	
 }

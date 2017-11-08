@@ -13,6 +13,7 @@ public interface TipDao {
 	Tip getTipNext(String id);
 	int getTipCount();
 	int update(String id, Tip tip);
+	int updateHit(String id);
 	int insert(String title, String content, String writerId);
 	int insert(Tip tip);
 	int getNextId();

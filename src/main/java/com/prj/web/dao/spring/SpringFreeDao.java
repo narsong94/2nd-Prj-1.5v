@@ -71,6 +71,13 @@ public class SpringFreeDao implements FreeDao {
 		
 		return result;
 	}
+	
+	@Override
+	public int updateHit(String id) {
+		String sql = "update Free set hit = ifnull(hit,0)+1 where id = ?;";
+		
+		return template.update(sql, id);
+	}
 
 	@Override
 	public int getNextId() {

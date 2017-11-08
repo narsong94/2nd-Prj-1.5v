@@ -72,6 +72,13 @@ public class SpringTipDao implements TipDao {
 		
 		return result;
 	}
+	
+	@Override
+	public int updateHit(String id) {
+		String sql = "update Tip set hit = ifnull(hit,0)+1 where id = ?;";
+		
+		return template.update(sql, id);
+	}
 
 	@Override
 	public int insert(String title, String content, String writerId) {

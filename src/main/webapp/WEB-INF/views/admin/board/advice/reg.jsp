@@ -1,5 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<script type="text/javascript">
+$(function() {
+	var titleText = $("form input[name='title']");
+	var contentText = $("form input[name='content']");
+	var submitBtn = $("form input[type='submit']");
+	var cancelBtn = $("#btns a");
+
+	submitBtn.click(function(e) {
+		if (titleText.val() == "") {
+			alert("제목을 입력하세요.");
+			e.preventDefault();
+		}
+		else if (contentText.val() == "") {
+			alert("내용을 입력하세요.");
+			e.preventDefault();
+		}
+	});
+
+	cancelBtn.click(function(e) {
+		if (titleText.val() != "") {
+			if (!confirm("작성중이던 입력을 취소하시겠습니까?"))
+				e.preventDefault();
+		}
+	});
+});
+</script>
 
 <form action="?${_csrf.parameterName}=${_csrf.token}" method="post"
 	enctype="multipart/form-data">

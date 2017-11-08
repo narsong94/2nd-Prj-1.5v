@@ -1,5 +1,6 @@
 package com.prj.web.dao.spring;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +74,13 @@ public class SpringAdviceDao implements AdviceDao {
 	}
 
 	@Override
+	public int updateHit(String id) {
+		String sql = "update Advice set hit = ifnull(hit,0)+1 where id = ?;";
+		
+		return template.update(sql, id);
+	}
+
+	@Override
 	public int insert(String title, String content, String writerId) {
 		return insert(new Advice(title, content, writerId));
 	}
@@ -109,4 +117,15 @@ public class SpringAdviceDao implements AdviceDao {
 		return del;
 	}
 
+	@Override
+	public List<Advice> getPrevAdviceList(String id, Date date) {
+		String sql = "select * from Advice where writer_id = ? and date < ? order by date desc limit 3;";
+
+		try {
+			return template.query(sql, new Object[] { id, date },
+				BeanPropertyRowMapper.newInstance(Advice.class));
+		}catch(EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
 }

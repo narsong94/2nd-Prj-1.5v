@@ -50,6 +50,7 @@ public class BoardController {
 	@RequestMapping("free/{id}")
 	public String freeDetail(@PathVariable("id") String id, Model model) {
 
+		service.updateFreeHit(id);
 		model.addAttribute("f", service.getFree(id));
 		model.addAttribute("prev", service.getFreePrev(id));
 		model.addAttribute("next", service.getFreeNext(id));
@@ -114,9 +115,8 @@ public class BoardController {
 	public String tipDetail(@PathVariable("id") String id, Model model) {
 		
 		Tip prev = service.getTipPrev(id);
-		System.out.println("controller "+prev);
 		Tip next = service.getTipNext(id);
-		System.out.println("controller "+next);
+		service.updateTipHit(id);
 
 		model.addAttribute("t", service.getTip(id));
 		model.addAttribute("prev", prev);
@@ -216,11 +216,12 @@ public class BoardController {
 	@RequestMapping("info/{id}")
 	public String infoDetail(@PathVariable("id") String id, Model model) {
 		
-		  model.addAttribute("i", service.getInfo(id));
-	      model.addAttribute("prev", service.getInfoPrev(id));
-	      model.addAttribute("next", service.getInfoNext(id));
+		service.updateInfoHit(id);
+		model.addAttribute("i", service.getInfo(id));	  
+	    model.addAttribute("prev", service.getInfoPrev(id));
+	    model.addAttribute("next", service.getInfoNext(id));
 	         
-	      return "admin.board.info.detail";
+	    return "admin.board.info.detail";
 	}
 	
 	@RequestMapping(value="info/{id}/edit",method=RequestMethod.GET)
@@ -282,6 +283,7 @@ public class BoardController {
 		
 		Voting prev = service.getVotingPrev(id);
 		Voting next = service.getVotingNext(id);
+		service.updateVotingHit(id);
 
 		model.addAttribute("v", service.getVoting(id));
 		model.addAttribute("prev", prev);
@@ -348,8 +350,12 @@ public class BoardController {
 		
 		Advice prev = service.getAdvicePrev(id);
 		Advice next = service.getAdviceNext(id);
+		service.updateAdviceHit(id);
+		Advice advice = service.getAdvice(id);
+		List<Advice> prevList = service.getPrevAdviceList(advice.getWriterId(), advice.getDate());
 
-		model.addAttribute("a", service.getAdvice(id));
+		model.addAttribute("a", advice);
+		model.addAttribute("prevlist", prevList);
 		model.addAttribute("prev", prev);
 		model.addAttribute("next", next);
 

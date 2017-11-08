@@ -37,6 +37,13 @@
 					<img src="upload/${file.src}" />
 				</c:forEach> ${a.content}<br />
 		</tr>
+		<tr>
+			<td colspan="3">
+				<c:forEach var="prevAdvice" items="${prevlist}">
+					${prevAdvice.title} ~
+				</c:forEach>
+			</td>
+		</tr>
 	</tbody>
 </table>
 

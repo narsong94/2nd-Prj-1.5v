@@ -13,6 +13,7 @@ public interface FreeDao {
 	Free getFreePrev(String id);
 	Free getFreeNext(String id);
 	int update(String id, Free free);
+	int updateHit(String id);
 	int getNextId();
 	int insert(String title, String content, String writerId);
 	int insert(Free free);

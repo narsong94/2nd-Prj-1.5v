@@ -16,7 +16,8 @@ public interface InfoDao {
 	Info getInfoNext(String id);
 
 	int update(String id, Info info);
-
+	int updateHit(String id);
+	
 	int delete(String id);
 
 	int insert(String title, String content, String writerId);
