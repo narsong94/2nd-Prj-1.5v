@@ -2,28 +2,27 @@ package com.prj.web.entity;
 
 import java.util.Date;
 
-public class Free {
+public class Advice {
 	private int id;
 	private String title;
 	private String content;
-	private String writerId;
-	private String hit;
+	private int hit;
 	private Date date;
+	private String writerId;
 	
-	public Free() {
+	public Advice() {
 	}
 	
-	public Free(int id, String title, String content, String writerId, String hit, Date date) {
+	public Advice(int id, String title, String content, int hit, Date date, String writerId) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.content = content;
-		this.writerId = writerId;
 		this.hit = hit;
 		this.date = date;
+		this.writerId = writerId;
 	}
-
-	public Free(String title, String content, String writerId) {
+	public Advice(String title, String content, String writerId) {
 		this.title = title;
 		this.content = content;
 		this.writerId = writerId;
@@ -47,23 +46,27 @@ public class Free {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getWriterId() {
-		return writerId;
-	}
-	public void setWriterId(String writerId) {
-		this.writerId = writerId;
-	}
-	public String getHit() {
+	public int getHit() {
 		return hit;
 	}
-	public void setHit(String hit) {
+	public void setHit(int hit) {
 		this.hit = hit;
 	}
+
 	public Date getDate() {
 		return date;
 	}
+
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public String getWriterId() {
+		return writerId;
+	}
+
+	public void setWriterId(String writerId) {
+		this.writerId = writerId;
 	}
 	
 }

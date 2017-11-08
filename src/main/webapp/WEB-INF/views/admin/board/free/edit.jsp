@@ -35,16 +35,12 @@ $(function() {
 			<tr>
 				<td>제목</td>
 				<td colspan="2">
-					<input type="text" name="title" value="${t.title}" />
+					<input type="text" name="title" value="${f.title}" />
 				</td>
 			</tr>
 			<tr>
-				<td>작성일</td>
-				<td colspan="2">${t.date}</td>
-			</tr>
-			<tr>
 				<td>조회수</td>
-				<td>${t.hit}</td>
+				<td>${f.hit}</td>
 			</tr>
 			<%-- <tr>
 				<td>첨부파일</td>
@@ -55,7 +51,7 @@ $(function() {
 			</tr> --%>
 			<tr>
 				<td colspan="3">
-					<textarea name="content" rows="20" cols="60">${t.content}</textarea>
+					<textarea name="content" rows="20" cols="60">${f.content}</textarea>
 				</td>
 			</tr>
 		</tbody>

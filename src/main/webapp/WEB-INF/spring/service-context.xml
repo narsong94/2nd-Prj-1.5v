@@ -60,6 +60,9 @@
 	<!-- DAO 객체들 -->
 	<bean name="FreeDao" class="com.prj.web.dao.spring.SpringFreeDao"/>
 	<bean name="TipDao" class="com.prj.web.dao.spring.SpringTipDao"/>
+	<bean name="InfoDao" class="com.prj.web.dao.spring.SpringInfoDao"/>
+	<bean name="VotingDao" class="com.prj.web.dao.spring.SpringVotingDao"/>
+	<bean name="AdviceDao" class="com.prj.web.dao.spring.SpringAdviceDao"/>
 	
 	<!-- Service 객체들 -->
 	<bean class="com.prj.web.service.admin.BoardService"/>

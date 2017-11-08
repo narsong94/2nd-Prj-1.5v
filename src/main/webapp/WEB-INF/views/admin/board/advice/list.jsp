@@ -18,13 +18,13 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="t" items="${list}">
+		<c:forEach var="a" items="${list}">
 			<tr>
-				<td>${t.id}</td>
-				<td><a href="${ctx}/admin/board/tip/${t.id}">${t.title}</a></td>
-				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${t.date}" />
+				<td>${a.id}</td>
+				<td><a href="${ctx}/admin/board/advice/${a.id}">${a.title}</a></td>
+				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${a.date}" />
 				</td>
-				<td>${t.hit}</td>
+				<td>${a.hit}</td>
 			</tr>
 		</c:forEach>
 	</tbody>
@@ -47,7 +47,7 @@
 			</c:if>
 
 			<c:if test="${startNum+i <= lastNum}">
-				<li><a class="${strong}" href="${ctx}/admin/board/tip/?p=${startNum+i}">${startNum+i}</a></li>
+				<li><a class="${strong}" href="${ctx}/admin/board/advice/?p=${startNum+i}">${startNum+i}</a></li>
 			</c:if>
 
 			<!-- 	목록이 더이상 없으면 하이퍼링크 지움 -->
@@ -63,6 +63,6 @@
 </ul>
 
 <div>
-	<a href="../board/tip/reg">추가하기</a>
+	<a href="../board/advice/reg">추가하기</a>
 </div>
 </main>

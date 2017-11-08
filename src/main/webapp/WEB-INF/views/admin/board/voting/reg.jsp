@@ -28,6 +28,6 @@
 	<div>
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 		<input type="submit" value="등록" /> 
-		<a href="../tip">취소</a>
+		<a href="../voting">취소</a>
 	</div>
 </form>

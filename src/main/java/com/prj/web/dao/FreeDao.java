@@ -12,5 +12,11 @@ public interface FreeDao {
 	Free getFree(String id);
 	Free getFreePrev(String id);
 	Free getFreeNext(String id);
+	int update(String id, Free free);
+	int getNextId();
+	int insert(String title, String content, String writerId);
+	int insert(Free free);
+	int delete(String id);
+	int getFreeCount();
 
 }

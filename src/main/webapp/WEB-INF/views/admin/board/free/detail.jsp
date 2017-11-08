@@ -8,17 +8,9 @@
 	<tbody>
 		<tr>
 			<th>제목</th>
-			<td colspan="3">${f.title}</td>
+			<td colspan="2">${f.title}</td>
 		</tr>
 		<tr>
-			<th>작성일</th>
-			<td colspan="3">
-				<fmt:formatDate pattern="yyyy-MM-dd" value="${f.date}" />
-			</td>
-		</tr>
-		<tr>
-			<th>작성자</th>
-			<td>${f.writerId}</td>
 			<th>조회수</th>
 			<td>${f.hit}</td>
 		</tr>
@@ -32,7 +24,7 @@
 			</td>
 		</tr> --%>
 		<tr class="content">
-			<td colspan="4"><c:forEach var="file" items="${files}"
+			<td colspan="3"><c:forEach var="file" items="${files}"
 					varStatus="s">
 					<img src="upload/${file.src}" />
 				</c:forEach> ${f.content}<br />
@@ -52,7 +44,7 @@
 			<tr>
 				<th>다음글</th>
 				<td colspan="3">
-					<a class="text-blue text-strong" href="${next.id}">${next.title}</a>
+					<a href="${next.id}">${next.title}</a>
 				</td>
 			</tr>
 		</c:if>
@@ -75,6 +67,11 @@
 
 <div>
 	<a href="../free">목록</a>
+</div>
+
+<div>
+	<a href="../free/${f.id}/edit">수정하기</a>
+	<a href="../free/${f.id}/del">삭제하기</a>
 </div>
 
 </main>

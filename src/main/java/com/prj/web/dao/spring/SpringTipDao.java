@@ -3,6 +3,7 @@ package com.prj.web.dao.spring;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -37,16 +38,22 @@ public class SpringTipDao implements TipDao {
 	public Tip getTipPrev(String id) {
 		String sql = "select * from Tip where id < CAST(? as UNSIGNED) order by date DESC limit 1";
 
-		Tip prev = template.queryForObject(sql, new Object[] { id }, BeanPropertyRowMapper.newInstance(Tip.class));
-		return prev;
+		try {
+			return template.queryForObject(sql, new Object[] { id }, BeanPropertyRowMapper.newInstance(Tip.class));
+		} catch(EmptyResultDataAccessException e) {			
+			return null;
+		}
 	}
 
 	@Override
 	public Tip getTipNext(String id) {
 		String sql = "select * from Tip where id > CAST(? as UNSIGNED) order by date ASC limit 1";
 
-		Tip next = template.queryForObject(sql, new Object[] { id }, BeanPropertyRowMapper.newInstance(Tip.class));
-		return next;
+		try {
+			return template.queryForObject(sql, new Object[] { id }, BeanPropertyRowMapper.newInstance(Tip.class));
+		} catch(EmptyResultDataAccessException e) {			
+			return null;
+		}
 	}
 
 	@Override
@@ -80,7 +87,7 @@ public class SpringTipDao implements TipDao {
 						getNextId(), 
 						tip.getTitle(), 
 						tip.getContent(), 
-						tip.getWriterId());	
+						tip.getWriterId());		
 				
 		return insert;
 	}
@@ -93,6 +100,15 @@ public class SpringTipDao implements TipDao {
 		System.out.println(nextId);
 		
 		return nextId;
+	}
+
+	@Override
+	public int delete(String id) {
+		String sql = "delete from Tip where id = ?";
+		
+		int del = template.update(sql, id);
+		
+		return del;
 	}
 
 }

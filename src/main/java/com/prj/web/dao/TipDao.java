@@ -16,4 +16,5 @@ public interface TipDao {
 	int insert(String title, String content, String writerId);
 	int insert(Tip tip);
 	int getNextId();
+	int delete(String id);
 }

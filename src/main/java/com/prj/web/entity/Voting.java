@@ -2,18 +2,18 @@ package com.prj.web.entity;
 
 import java.util.Date;
 
-public class Free {
+public class Voting {
 	private int id;
 	private String title;
 	private String content;
 	private String writerId;
-	private String hit;
+	private int hit;
 	private Date date;
 	
-	public Free() {
+	public Voting() {
 	}
-	
-	public Free(int id, String title, String content, String writerId, String hit, Date date) {
+
+	public Voting(int id, String title, String content, String writerId, int hit, Date date) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -23,7 +23,7 @@ public class Free {
 		this.date = date;
 	}
 
-	public Free(String title, String content, String writerId) {
+	public Voting(String title, String content, String writerId) {
 		this.title = title;
 		this.content = content;
 		this.writerId = writerId;
@@ -32,38 +32,50 @@ public class Free {
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public String getContent() {
 		return content;
 	}
+
 	public void setContent(String content) {
 		this.content = content;
 	}
+
 	public String getWriterId() {
 		return writerId;
 	}
+
 	public void setWriterId(String writerId) {
 		this.writerId = writerId;
 	}
-	public String getHit() {
+
+	public int getHit() {
 		return hit;
 	}
-	public void setHit(String hit) {
+
+	public void setHit(int hit) {
 		this.hit = hit;
 	}
+
 	public Date getDate() {
 		return date;
 	}
+
 	public void setDate(Date date) {
 		this.date = date;
 	}
+	
 	
 }

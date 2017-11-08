@@ -8,19 +8,19 @@
 	<tbody>
 		<tr>
 			<th>제목</th>
-			<td colspan="2">${t.title}</td>
+			<td colspan="2">${a.title}</td>
 		</tr>
 		<tr>
 			<th>작성일</th>
 			<td colspan="2">
-				<fmt:formatDate pattern="yyyy-MM-dd" value="${t.date}" />
+				<fmt:formatDate pattern="yyyy-MM-dd" value="${a.date}" />
 			</td>
 		</tr>
 		<tr>
 			<th>작성자</th>
-			<td>${t.writerId}</td>
+			<td>${a.writerId}</td>
 			<th>조회수</th>
-			<td>${t.hit}</td>
+			<td>${a.hit}</td>
 		</tr>
 		<%-- <tr>
 			<th>첨부파일</th>
@@ -35,7 +35,7 @@
 			<td colspan="3"><c:forEach var="file" items="${files}"
 					varStatus="s">
 					<img src="upload/${file.src}" />
-				</c:forEach> ${t.content}<br />
+				</c:forEach> ${a.content}<br />
 		</tr>
 	</tbody>
 </table>
@@ -74,12 +74,12 @@
 </table>
 
 <div>
-	<a href="../tip">목록</a>
+	<a href="../advice">목록</a>
 </div>
 
 <div>
-	<a href="../tip/${t.id}/edit">수정하기</a>
-	<a href="../tip/${t.id}/del">삭제하기</a>
+	<a href="../advice/${a.id}/edit">수정하기</a>
+	<a href="../advice/${a.id}/del">삭제하기</a>
 </div>
 
 </main>
