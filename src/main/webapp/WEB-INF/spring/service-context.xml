@@ -66,6 +66,7 @@
 	
 	<!-- Service 객체들 -->
 	<bean class="com.prj.web.service.admin.BoardService"/>
+	<bean class="com.prj.web.service.admin.MypageService"/>
 	
 	<context:annotation-config></context:annotation-config>	
 </beans>

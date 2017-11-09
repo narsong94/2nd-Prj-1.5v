@@ -7,6 +7,12 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
 <main>
+
+<form method="get">
+	<input type="text" name="q"/>
+	<input type="submit" value="검색" />
+</form>
+
 <table>
 	<thead>
 		<tr>
@@ -63,6 +69,6 @@
 </ul>
 
 <div>
-	<a href="../board/advice/reg">추가하기</a>
+	<a href="${ctx}/admin/board/advice/reg">추가하기</a>
 </div>
 </main>

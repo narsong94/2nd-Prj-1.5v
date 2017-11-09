@@ -20,5 +20,4 @@ public interface AdviceDao {
 	int getNextId();
 	int delete(String id);
 	List<Advice> getPrevAdviceList(String id, Date date);
-	
 }
