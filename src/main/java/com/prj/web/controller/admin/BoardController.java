@@ -401,4 +401,5 @@ public class BoardController {
 		
 		return "redirect:../../advice";
 	}
+	
 }

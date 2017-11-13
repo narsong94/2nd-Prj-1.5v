@@ -6,6 +6,12 @@
 
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+</script>
+
 <main>
 
 <form method="get">
@@ -30,7 +36,10 @@
 				<td><a href="${ctx}/admin/board/advice/${a.id}">${a.title}</a></td>
 				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${a.date}" />
 				</td>
-				<td>${a.hit}</td>
+				<td>${a.writerId}</td>
+				<td>${a.hit}</td>	
+				<td>
+				</td>
 			</tr>
 		</c:forEach>
 	</tbody>
