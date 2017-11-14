@@ -1,12 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<h1>footer</h1>
-</body>
-</html>
+
+<link rel="stylesheet" type="text/css" href="resource/css/footer.css">
+
+<div id="footer">
+	<a>문의가 있으신 분은 연락하지 말아주시기 바랍니다.</a>
+</div>

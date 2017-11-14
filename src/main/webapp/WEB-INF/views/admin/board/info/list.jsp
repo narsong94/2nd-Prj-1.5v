@@ -4,6 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<link rel="stylesheet" type="text/css" href="resource/css/board/info.css">
+
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
 <main>
