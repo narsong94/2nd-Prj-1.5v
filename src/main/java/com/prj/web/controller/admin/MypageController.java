@@ -33,7 +33,7 @@ public class MypageController {
 
 	@RequestMapping(value = "advice", method = {RequestMethod.GET, RequestMethod.POST})
 	public String advice(@RequestParam(value = "p", defaultValue = "1") int page, 
-						String query, 
+						@RequestParam(value = "q", defaultValue = "")String query, 
 						@RequestParam(value="adviceChk", required=true, defaultValue="") List<String> chkList,
 						Model model) {
 		
@@ -110,8 +110,8 @@ public class MypageController {
 	
 	@RequestMapping(value="free", method = {RequestMethod.GET, RequestMethod.POST})
 	public String free(@RequestParam(value = "p", defaultValue = "1") int page, 
-						String query, 
-						@RequestParam(value="freeChk", required=true) List<String> chkList,
+			@RequestParam(value = "query", defaultValue = "")String query, 
+						@RequestParam(value="freeChk", required=true, defaultValue="") List<String> chkList,
 						Model model) {
 		
 		for(String chk : chkList) {
@@ -182,8 +182,8 @@ public class MypageController {
 	
 	@RequestMapping(value="voting", method = {RequestMethod.GET, RequestMethod.POST})
 	public String voting(@RequestParam(value = "p", defaultValue = "1") int page, 
-						String query, 
-						@RequestParam(value="votingChk", required=true) List<String> chkList,
+			@RequestParam(value = "query", defaultValue = "")String query, 
+						@RequestParam(value="votingChk", required=true, defaultValue="") List<String> chkList,
 						Model model) {
 		
 		for(String chk : chkList) {
@@ -256,7 +256,7 @@ public class MypageController {
 	
 	@RequestMapping(value="info", method = {RequestMethod.GET, RequestMethod.POST})
 	public String info(@RequestParam(value = "p", defaultValue = "1") int page, 
-						@RequestParam(value="infoChk", required=true) List<String> chkList,
+						@RequestParam(value="infoChk", required=true, defaultValue="") List<String> chkList,
 						Model model) {
 		
 		for(String chk : chkList) {
@@ -328,8 +328,8 @@ public class MypageController {
 	
 	@RequestMapping(value="tip", method = {RequestMethod.GET,RequestMethod.POST})
 	public String tip(@RequestParam(value = "p", defaultValue = "1") int page, 
-						String query, 
-						@RequestParam(value="tipChk", required=true) List<String> chkList,
+			@RequestParam(value = "query", defaultValue = "")String query, 
+						@RequestParam(value="tipChk", required=true, defaultValue="") List<String> chkList,
 						Model model) {
 		
 		for(String chk : chkList) {

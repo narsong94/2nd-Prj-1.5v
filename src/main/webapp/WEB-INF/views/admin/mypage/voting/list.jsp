@@ -68,7 +68,7 @@ $(function() {
 			</c:if>
 
 			<c:if test="${startNum+i <= lastNum}">
-				<li><a class="${strong}" href="${ctx}/admin/board/voting/?p=${startNum+i}">${startNum+i}</a></li>
+				<li><a class="${strong}" href="${ctx}/admin/mypage/voting/?p=${startNum+i}">${startNum+i}</a></li>
 			</c:if>
 
 			<!-- 	목록이 더이상 없으면 하이퍼링크 지움 -->

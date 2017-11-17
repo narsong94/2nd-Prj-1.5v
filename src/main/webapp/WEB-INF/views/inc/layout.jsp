@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <!-- <meta name="viewport" content="width=device-width,initial-scale=1"> -->
 <title>index</title>
-<link rel="stylesheet" type="text/css" href="resource/css/layout.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/resource/css/layout.css">
 <%-- <link href="${ctx}/resource/css/layout.css" type="text/css" rel="stylesheet" />
 <link href="${ctx}/resource/css/<tiles:getAsString name="css"/>" type="text/css" rel="stylesheet" /> --%>
 </head>

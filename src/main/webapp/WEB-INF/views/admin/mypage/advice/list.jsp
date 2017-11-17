@@ -23,7 +23,7 @@ $(function() {
 목록을 누르면 Advice 게시판에 해당 게시글로 이동됩니다.
 
 <form method="get">
-	<input type="text" name="query"/>
+	<input type="text" name="q"/>
 	<input type="submit" value="검색" />
 </form>
 
@@ -69,7 +69,7 @@ $(function() {
 			</c:if>
 
 			<c:if test="${startNum+i <= lastNum}">
-				<li><a class="${strong}" href="${ctx}/admin/board/advice/?p=${startNum+i}">${startNum+i}</a></li>
+				<li><a class="${strong}" href="${ctx}/admin/mypage/advice/?p=${startNum+i}">${startNum+i}</a></li>
 			</c:if>
 
 			<!-- 	목록이 더이상 없으면 하이퍼링크 지움 -->

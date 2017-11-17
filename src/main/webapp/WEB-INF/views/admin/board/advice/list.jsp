@@ -3,25 +3,73 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<link rel="stylesheet" type="text/css" href="resource/css/board/advice.css">
+<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
 
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript">
+<link rel="stylesheet" type="text/css" href="${ctx}/resource/css/board/advice.css">
 
+<script>
+$(function(){
+    $.ajax({
+        url : "../adivce",
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader(header, token);
+        },
+        type : "POST",
+        cache : false,
+        dataType: 'json',
+        success : function(data){
+            //console.log(data);
+            var content="";
+            for(var i=0; i<data.hashMapList.length; i++){
+                content +=
+                "<tr>"+
+                    "<td>"+data.hashMapList[i].id+"</td>"+
+                    "<td>"+data.hashMapList[i].title+"</td>"+
+                    "<td>"+data.hashMapList[i].date+"</td>"+
+                    "<td>"+data.hashMapList[i].writerId+"</td>"+
+                    "<td>"+data.hashMapList[i].hit+"</td>"+
+                "</tr>";
+            }
+            content+="<tr id='addbtn'><td colspan='5'><div class='btns'><a href='javascript:moreList();' class='btn'>더보기</a></div>  </td></tr>";
+            $('#addbtn').remove();//remove btn
+            $(content).appendTo("#table");
+        }, error:function(request,status,error){
+            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+           }
+    });
+});
+
+
+
+$(function() {
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 200) {
+            $('#MOVE_TOP_BTN').fadeIn();
+        } else {
+            $('#MOVE_TOP_BTN').fadeOut();
+        }
+    });
+    
+    $("#MOVE_TOP_BTN").click(function() {
+        $('html, body').animate({
+            scrollTop : 0
+        }, 400);
+        return false;
+    });
+});
 
 </script>
 
-<main>
+<main class="main">
 
 <form method="get">
-	<input type="text" name="q"/>
-	<input type="submit" value="검색" />
+	<input type="text" name="q" /> <input type="submit" value="검색" />
 </form>
 
-<table>
+<table id="table" class="table">
 	<thead>
 		<tr>
 			<th>번호</th>
@@ -44,10 +92,11 @@
 				</td>
 			</tr>
 		</c:forEach>
-	</tbody>
+			<tr id='addbtn'><td colspan="5"><div class="btns"><a href="javascript:;" class="btn btn-primary">더보기</a></div></td></tr>
+    </tbody>
 </table>
 
-<ul>
+<%-- <ul>
 <c:set var="page" value="${param.p}" /> 
 <c:set var="startNum" value="${page-((page-1)%5)}" /> 
 <c:set var="lastNum" value="${fn:substringBefore((count%10 == 0 ? count/10 : count/10 +1),'.')}" />
@@ -77,9 +126,12 @@
 <c:if test="${lastNum >= startNum+5 }">
 	<a href="?p=${startNum+5}">다음</a>
 </c:if>
-</ul>
+</ul> --%>
 
 <div>
 	<a href="${ctx}/admin/board/advice/reg">추가하기</a>
 </div>
+
+<a id="MOVE_TOP_BTN" href="#">TOP</a>
+
 </main>

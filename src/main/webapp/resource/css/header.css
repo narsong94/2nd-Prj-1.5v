@@ -21,7 +21,7 @@
     float: right;
 }
 
-li a, .dropbtn {
+.menu-selector, .dropbtn {
     display: inline-block;
     color: white;
     text-align: center;
@@ -62,6 +62,6 @@ li a, .dropbtn {
     display: block;
 }
 
-.active {
+.menu-selector.active {
 	background-color: MediumSeaGreen;
 }
