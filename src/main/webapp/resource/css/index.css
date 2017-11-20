@@ -1,37 +1,107 @@
 @charset "UTF-8";
 
-#bg {
-	max-width: 100%;
-	height: 800px;
+#menu {
+	margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
-/* #bg #main {
+.fixed{
+	top: 0;
+	position: fixed;
+}
+
+#menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding-right: 30px;
+    padding-left: 30px;
+    overflow: hidden;
+    background-color: #333;
+}
+
+#menu li {
+    float: right;
+}
+
+.menu-selector, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 25px 20px;
+    text-decoration: none;
+} 
+
+#menu li a:hover, .dropdown:hover .dropbtn {
+    background-color: MediumSeaGreen;
+}
+
+#menu li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+	background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.menu-selector.active {
+	background-color: MediumSeaGreen;
+}
+
+/* ==================================================================== */
+
+#main-menu {
 	max-width: 100%;
 	height: auto;
 }
 
-.page {
-	min-height: 500px;
+#main-menu section {
+	max-width: 100%;
+	height: 650px;
 }
 
-#main .page li {
-	diplay: inline-block;
-	float: left;
-	text-decoration: none;
-	cursor: pointer;
-	list-style: none;
-	padding: 10px 15px;
+#home {
+	background: #fff;
+	padding-top: 71px;
 }
-
-#main li a {
-	color: black;
+#advice {
+	background: #ff8080;
+	padding-top: 71px;
 }
-
-img {
-	border: 0;
+#voting {
+	background: #ff0000;
+	padding-top: 71px;
 }
-
-img:hover {
-	opacity: 0.8;
-	filter: alpha(opacity = 80);
-} */
+#info {
+	background: #804040;
+	padding-top: 71px;
+}
+#tip {
+	background: #800000;
+	padding-top: 71px;
+}
+#free {
+	padding-top: 0px;
+	background: #400000;
+}

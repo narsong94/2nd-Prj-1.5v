@@ -42,25 +42,6 @@ $(function(){
     });
 });
 
-
-
-$(function() {
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > 200) {
-            $('#MOVE_TOP_BTN').fadeIn();
-        } else {
-            $('#MOVE_TOP_BTN').fadeOut();
-        }
-    });
-    
-    $("#MOVE_TOP_BTN").click(function() {
-        $('html, body').animate({
-            scrollTop : 0
-        }, 400);
-        return false;
-    });
-});
-
 </script>
 
 <main class="main">
@@ -96,7 +77,7 @@ $(function() {
     </tbody>
 </table>
 
-<%-- <ul>
+<ul>
 <c:set var="page" value="${param.p}" /> 
 <c:set var="startNum" value="${page-((page-1)%5)}" /> 
 <c:set var="lastNum" value="${fn:substringBefore((count%10 == 0 ? count/10 : count/10 +1),'.')}" />
@@ -126,12 +107,10 @@ $(function() {
 <c:if test="${lastNum >= startNum+5 }">
 	<a href="?p=${startNum+5}">다음</a>
 </c:if>
-</ul> --%>
+</ul>
 
 <div>
 	<a href="${ctx}/admin/board/advice/reg">추가하기</a>
 </div>
-
-<a id="MOVE_TOP_BTN" href="#">TOP</a>
 
 </main>

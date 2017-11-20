@@ -3,6 +3,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<script>
+$(function() {
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 200) {
+            $('#MOVE_TOP_BTN').fadeIn();
+        } else {
+            $('#MOVE_TOP_BTN').fadeOut();
+        }
+    });
+    
+    $("#MOVE_TOP_BTN").click(function() {
+        $('html, body').animate({
+            scrollTop : 0
+        }, 400);
+        return false;
+    });
+});
+
+</script>
+
 <main>
 <table>
 	<tbody>
@@ -73,5 +93,7 @@
 	<a href="../voting/${v.id}/edit">수정하기</a>
 	<a href="../voting/${v.id}/del">삭제하기</a>
 </div>
+
+<a id="MOVE_TOP_BTN" href="#">TOP</a>
 
 </main>
