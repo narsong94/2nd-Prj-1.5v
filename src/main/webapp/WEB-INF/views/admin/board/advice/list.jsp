@@ -10,42 +10,6 @@
 
 <link rel="stylesheet" type="text/css" href="${ctx}/resource/css/board/advice.css">
 
-<script>
-$(function(){
-    $.ajax({
-        url : "../adivce",
-        beforeSend: function(xhr) {
-            xhr.setRequestHeader(header, token);
-        },
-        type : "POST",
-        cache : false,
-        dataType: 'json',
-        success : function(data){
-            //console.log(data);
-            var content="";
-            for(var i=0; i<data.hashMapList.length; i++){
-                content +=
-                "<tr>"+
-                    "<td>"+data.hashMapList[i].id+"</td>"+
-                    "<td>"+data.hashMapList[i].title+"</td>"+
-                    "<td>"+data.hashMapList[i].date+"</td>"+
-                    "<td>"+data.hashMapList[i].writerId+"</td>"+
-                    "<td>"+data.hashMapList[i].hit+"</td>"+
-                "</tr>";
-            }
-            content+="<tr id='addbtn'><td colspan='5'><div class='btns'><a href='javascript:moreList();' class='btn'>더보기</a></div>  </td></tr>";
-            $('#addbtn').remove();//remove btn
-            $(content).appendTo("#table");
-        }, error:function(request,status,error){
-            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-           }
-    });
-});
-
-</script>
-
-<main class="main">
-
 <form method="get">
 	<input type="text" name="q" /> <input type="submit" value="검색" />
 </form>
@@ -73,7 +37,6 @@ $(function(){
 				</td>
 			</tr>
 		</c:forEach>
-			<tr id='addbtn'><td colspan="5"><div class="btns"><a href="javascript:;" class="btn btn-primary">더보기</a></div></td></tr>
     </tbody>
 </table>
 

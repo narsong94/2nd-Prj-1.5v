@@ -18,6 +18,12 @@ public class HomeController {
 	public String login() {
 		return "home.login";
 	}
+	
+	@RequestMapping("accessDeny")
+	public String accessDeny() {
+		return "home.accessDeny";
+	}
+	
 /*
 	@RequestMapping("upload")
 	@ResponseBody

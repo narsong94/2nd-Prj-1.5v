@@ -28,6 +28,7 @@
 	</bean>
 
 	<mvc:resources location="/resource/" mapping="/resource/**"></mvc:resources>
+	<mvc:resources location="/script/" mapping="/script/**"></mvc:resources>
 
 	<mvc:annotation-driven>
 		<mvc:message-converters> <!-- @ResponseBody로 String 처리할때 한글처리 -->
