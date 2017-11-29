@@ -29,7 +29,12 @@ $(function() {
 					<input id="logoutBtn" class="menu-selector" type="submit" value="Logout"/>
 				</form>
 			</li>
-			<li><a class="menu-selector" href="${path}/admin/board/mypage">Mypage</a></li>
+			<security:authorize access="hasRole('ROLE_ADMIN')">
+				<li><a class="menu-selector" href="${path}/admin/mypage/index">Mypage</a></li>
+			</security:authorize>
+			<security:authorize access="hasRole('ROLE_MEMBER')">
+				<li><a class="menu-selector" href="${path}/member/mypage/index">Mypage</a></li>
+			</security:authorize>
 		</security:authorize>
 		<li><a class="menu-selector" href="#about">About</a></li>
 		<li class="dropdown"><a class="menu-selector" class="dropbtn">Board</a>

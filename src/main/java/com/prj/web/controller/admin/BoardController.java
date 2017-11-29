@@ -281,11 +281,15 @@ public class BoardController {
 	@RequestMapping("voting/{id}")
 	public String votingDetail(@PathVariable("id") String id, Model model) {
 		
+		List<String> pics = service.getVotingImgs(id);
+		System.out.println(pics);
+		
 		Voting prev = service.getVotingPrev(id);
 		Voting next = service.getVotingNext(id);
 		service.updateVotingHit(id);
 
 		model.addAttribute("v", service.getVoting(id));
+		model.addAttribute("pics", pics);
 		model.addAttribute("prev", prev);
 		model.addAttribute("next", next);
 

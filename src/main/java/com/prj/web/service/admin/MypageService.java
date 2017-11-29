@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.prj.web.dao.AdviceDao;
 import com.prj.web.dao.FreeDao;
 import com.prj.web.dao.InfoDao;
+import com.prj.web.dao.UserDao;
 import com.prj.web.dao.TipDao;
 import com.prj.web.dao.VotingDao;
 import com.prj.web.entity.Advice;
 import com.prj.web.entity.Free;
 import com.prj.web.entity.Info;
 import com.prj.web.entity.Tip;
+import com.prj.web.entity.User;
 import com.prj.web.entity.Voting;
 
 public class MypageService {
@@ -31,6 +33,9 @@ public class MypageService {
 	
 	@Autowired
 	private AdviceDao AdviceDao;
+	
+	@Autowired
+	private UserDao UserDao;
 	
 	/*--------------------------------- 자유 게시판 ---------------------------------*/
 	
@@ -244,5 +249,27 @@ public class MypageService {
 
 	public List<Advice> getPrevAdviceList(String id, Date date) {
 		return AdviceDao.getPrevAdviceList(id, date);
+	}
+	
+	/*--------------------------------- User 게시판 ---------------------------------*/
+	
+	public List<User> getUserList(int page, String query) {
+		return UserDao.getList(page, query);
+	}
+
+	public int getUserCount() {
+		return UserDao.getUserCount();
+	}
+
+	public int userDel(String id) {
+		return UserDao.delete(id);
+	}
+
+	public User getUser(String id) {
+		return UserDao.getUser(id);
+	}
+
+	public int userUpdate(String id, User user) {
+		return UserDao.update(id, user);
 	}
 }

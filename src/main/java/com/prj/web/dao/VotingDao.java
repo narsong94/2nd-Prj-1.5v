@@ -18,4 +18,5 @@ public interface VotingDao {
 	int insert(Voting voting);
 	int getNextId();
 	int delete(String id);
+	List<String> getImgs(String id);
 }

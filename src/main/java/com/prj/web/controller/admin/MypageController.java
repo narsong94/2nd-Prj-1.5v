@@ -19,6 +19,7 @@ import com.prj.web.entity.Advice;
 import com.prj.web.entity.Free;
 import com.prj.web.entity.Info;
 import com.prj.web.entity.Tip;
+import com.prj.web.entity.User;
 import com.prj.web.entity.Voting;
 import com.prj.web.service.admin.MypageService;
 
@@ -28,6 +29,47 @@ public class MypageController {
 	
 	@Autowired
 	private MypageService service;
+	
+	/*-------------- user 관리 게시판 --------------*/
+	
+	@RequestMapping("index")
+	public String index() {
+		return "admin.mypage.index";
+	}
+	
+	@RequestMapping(value = "user", method = {RequestMethod.GET, RequestMethod.POST})
+	public String userManage(@RequestParam(value = "p", defaultValue = "1") int page, 
+						@RequestParam(value = "q", defaultValue = "")String query, 
+						@RequestParam(value="userChk", required=true, defaultValue="") List<String> chkList,
+						Model model) {
+		
+		for(String chk : chkList) {
+	        service.userDel(chk);
+	    }
+		
+		List<User> list = service.getUserList(page, query);
+		int count = service.getUserCount();
+		
+		model.addAttribute("list", list);
+		model.addAttribute("count", count);
+		return "admin.mypage.user.list";
+	}
+	
+	@RequestMapping(value = "user/{id}/edit", method = RequestMethod.GET)
+	public String userUpdate(@PathVariable("id") String id, Model model) {
+
+		model.addAttribute("u", service.getUser(id));
+		
+		return "admin.mypage.user.edit";
+	}
+	
+	@RequestMapping(value = "user/{id}/edit", method = RequestMethod.POST)
+	public String userUpdate(@PathVariable("id") String id, User User) {
+		
+		service.userUpdate(id, User);
+		
+		return "redirect:../../user";
+	}
 	
 	/*-------------- Advice 게시판 --------------*/
 

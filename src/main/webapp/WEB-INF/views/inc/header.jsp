@@ -15,13 +15,18 @@
 		</security:authorize>
 		<%-- </c:if> --%>
 		<%-- <c:if test="${ not empty sessionScope.id }"> --%>
-		<security:authorize access="hasRole('ROLE_ADMIN')">
+		<security:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')">
 			<li><form action="${path}/logout" method="post">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<input class="menu-selector" id="logoutBtn" type="submit" value="Logout"/>
 				</form>
 			</li>
-			<li><a class="menu-selector" href="${path}/admin/board/mypage">Mypage</a></li>
+			<security:authorize access="hasRole('ROLE_ADMIN')">
+				<li><a class="menu-selector" href="${path}/admin/mypage/index">Mypage</a></li>
+			</security:authorize>
+			<security:authorize access="hasRole('ROLE_MEMBER')">
+				<li><a class="menu-selector" href="${path}/member/mypage/index">Mypage</a></li>
+			</security:authorize>
 		</security:authorize>
 		<%-- </c:if> --%>
 		<li><a class="menu-selector" href="#about">About</a></li>

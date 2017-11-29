@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script>
 $(function() {
@@ -22,7 +22,7 @@ $(function() {
 });
 
 </script>
-
+<html>
 <main>
 <table>
 	<tbody>
@@ -34,15 +34,6 @@ $(function() {
 			<th>조회수</th>
 			<td>${v.hit}</td>
 		</tr>
-		<%-- <tr>
-			<th>첨부파일</th>
-			<td colspan="3">
-				<c:forEach var="file" items="${files}" varStatus="s">
-					<a href="../download?f=${file.src}">${file.src}</a>
-					<c:if test="${!s.last}">,</c:if>
-				</c:forEach>
-			</td>
-		</tr> --%>
 		<tr class="content">
 			<td colspan="3"><c:forEach var="file" items="${files}"
 					varStatus="s">
@@ -51,6 +42,15 @@ $(function() {
 		</tr>
 	</tbody>
 </table>
+
+<c:forEach var="pic" items="${pics}">
+<div class="gallery">
+	<a target="_blank" href="advice"> 
+		<img src='${pic}' alt="Forest" width="300" height="200">
+	</a>
+	<div class="desc"><button id="" onclick="" name="">이거 사</button></div>
+</div>
+</c:forEach>
 
 <table>
 	<tbody>
@@ -97,3 +97,4 @@ $(function() {
 <a id="MOVE_TOP_BTN" href="#">TOP</a>
 
 </main>
+</html>

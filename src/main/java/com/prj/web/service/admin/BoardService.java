@@ -201,6 +201,10 @@ public class BoardService {
 		return VotingDao.updateHit(id);	
 	}
 	
+	public List<String> getVotingImgs(String id) {
+		return VotingDao.getImgs(id);	
+	}
+	
 	/*--------------------------------- Advice °Ô½ÃÆÇ ---------------------------------*/
 
 	public List<Advice> getAdviceList(int page, String query) {
