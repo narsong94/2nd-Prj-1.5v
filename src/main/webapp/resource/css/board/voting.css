@@ -2,13 +2,27 @@
 
 .main{
 	max-width: 100%;
-	height: auto;
+	height: 100%;
 }
+
+.clearfix {
+	overflow: auto;
+  	zoom: 1;
+}
+
+#gallery-box {
+	display: inline-block;
+}
+
+.gallery {
+	float: left;
+}
+
 
 #MOVE_TOP_BTN {
     position: fixed;
-    right: 2%;
-    bottom: 50px;
+    right: 1%;
+    bottom: 57px;
     display: none;
     z-index: 999;
     

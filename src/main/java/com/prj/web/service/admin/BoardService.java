@@ -10,7 +10,9 @@ import com.prj.web.dao.AdviceDao;
 import com.prj.web.dao.FreeDao;
 import com.prj.web.dao.InfoDao;
 import com.prj.web.dao.VotingDao;
+import com.prj.web.dao.VotingLikeDao;
 import com.prj.web.entity.Voting;
+import com.prj.web.entity.VotingLike;
 import com.prj.web.entity.Advice;
 import com.prj.web.entity.Free;
 import com.prj.web.entity.Info;
@@ -32,6 +34,9 @@ public class BoardService {
 	
 	@Autowired
 	private AdviceDao AdviceDao;
+	
+	@Autowired
+	private VotingLikeDao VotingLikeDao;
 	
 	/*--------------------------------- 자유 게시판 ---------------------------------*/
 	
@@ -205,6 +210,34 @@ public class BoardService {
 		return VotingDao.getImgs(id);	
 	}
 	
+/*	public VotingLike votingLikeUp(String id) {
+		return VotingLikeDao.updateLike(id);
+	}*/
+
+	/*public VotingLike votingLikeUp(String id, String num) {
+		return VotingLikeDao.updateLike(id, num);
+	}*/
+	
+	public int getVotingLike(String id, String num) {
+		return VotingLikeDao.getVotingLike(id,num);
+	}
+	
+	public VotingLike getVotingLike(String id) {
+		return VotingLikeDao.getVotingLike(id);
+	}
+/*
+	public int setVotingLike(int id) {
+		return VotingLikeDao.setVotingLike(id);
+	}*/
+
+	public int getVoteUser(String userId) {
+		return VotingLikeDao.getVoteUser(userId);
+	}
+
+	public int setVotingUserLike(String id, String userId, String num) {
+		return VotingLikeDao.setVotingUserLike(id, userId, num);
+	}
+
 	/*--------------------------------- Advice 게시판 ---------------------------------*/
 
 	public List<Advice> getAdviceList(int page, String query) {
@@ -250,4 +283,7 @@ public class BoardService {
 	public List<Advice> getPrevAdviceList(String id, Date date) {
 		return AdviceDao.getPrevAdviceList(id, date);
 	}
+
+
+
 }
