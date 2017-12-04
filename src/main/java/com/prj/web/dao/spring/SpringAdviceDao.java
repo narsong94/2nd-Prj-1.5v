@@ -9,9 +9,11 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.prj.web.dao.AdviceDao;
+import com.prj.web.dao.CommentDao;
 import com.prj.web.entity.Advice;
+import com.prj.web.entity.Comment;
 
-public class SpringAdviceDao implements AdviceDao {
+public class SpringAdviceDao implements AdviceDao, CommentDao {
 
 	@Autowired
 	private JdbcTemplate template;
@@ -127,5 +129,31 @@ public class SpringAdviceDao implements AdviceDao {
 		}catch(EmptyResultDataAccessException e) {
 			return null;
 		}
+	}
+	
+	//-------------- Advice ´ñ±Û start --------------//
+	
+	@Override
+	public int adviceCommentInsert(String content, String advice_id, String writer_id) {
+		String sql = "insert into AdviceComment(content,adviceId,writerId) values(?,?,?)";
+		int result = template.update(sql,content, advice_id, writer_id);
+		
+		return result;
+	}
+
+	@Override
+	public List<Comment> getAdviceUpdateCommentList(String adviceId, String cId) {
+		String sql = "select * from AdviceComment where adviceId = ? and id > ? order by id asc";
+		List<Comment> list = template.query(sql, new Object[] {adviceId, cId},
+				BeanPropertyRowMapper.newInstance(Comment.class));
+		return list;
+	}
+	
+	@Override
+	public List<Comment> getAdviceCommentList(String id) {
+		String sql = "select * from AdviceComment where adviceId = ? order by id asc";
+		List<Comment> list = template.query(sql, new Object[] {id},
+				BeanPropertyRowMapper.newInstance(Comment.class));
+		return list;
 	}
 }

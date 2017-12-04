@@ -11,9 +11,11 @@ import com.prj.web.dao.FreeDao;
 import com.prj.web.dao.InfoDao;
 import com.prj.web.dao.VotingDao;
 import com.prj.web.dao.VotingLikeDao;
+import com.prj.web.dao.CommentDao;
 import com.prj.web.entity.Voting;
 import com.prj.web.entity.VotingLike;
 import com.prj.web.entity.Advice;
+import com.prj.web.entity.Comment;
 import com.prj.web.entity.Free;
 import com.prj.web.entity.Info;
 import com.prj.web.entity.Tip;
@@ -37,6 +39,9 @@ public class BoardService {
 	
 	@Autowired
 	private VotingLikeDao VotingLikeDao;
+	
+	@Autowired
+	private CommentDao CommentDao;
 	
 	/*--------------------------------- 자유 게시판 ---------------------------------*/
 	
@@ -282,5 +287,17 @@ public class BoardService {
 
 	public List<Advice> getPrevAdviceList(String id, Date date) {
 		return AdviceDao.getPrevAdviceList(id, date);
+	}
+
+	public int adviceCommentInsert(String content, String advice_id, String writer_id) {
+		return CommentDao.adviceCommentInsert(content, advice_id, writer_id);
+	}
+
+	public List<Comment> getAdviceUpdateCommentList(String adviceId, String cId) {
+		return CommentDao.getAdviceUpdateCommentList(adviceId, cId);
+	}
+	
+	public List<Comment> getAdviceCommentList(String id) {
+		return CommentDao.getAdviceCommentList(id);
 	}
 }

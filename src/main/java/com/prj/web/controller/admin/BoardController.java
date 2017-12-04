@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.security.Principal;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.prj.web.entity.Advice;
+import com.prj.web.entity.Comment;
 import com.prj.web.entity.Free;
 import com.prj.web.entity.Info;
 import com.prj.web.entity.Tip;
@@ -155,37 +157,6 @@ public class BoardController {
 		int nextId = service.getTipNextId();
 		String writerId = principal.getName();
 		System.out.println(writerId);
-/*
-		Calendar cal = Calendar.getInstance();
-		int year = cal.get(Calendar.YEAR);
-
-		ServletContext ctx = request.getServletContext();
-		String path = ctx.getRealPath(String.format("/resource/customer/notice/%s/%s", year, nextId));
-
-		System.out.println(path);
-
-		File f = new File(path);
-		if (!f.exists()) {
-			if (!f.mkdirs())
-				System.out.println("년도 디렉토리 생성 불가");
-		}
-
-		path += File.separator + file.getOriginalFilename();
-		File f2 = new File(path);
-
-		InputStream fis = file.getInputStream();
-		OutputStream fos = new FileOutputStream(f2);
-
-		byte[] buf = new byte[1024];
-
-		int size = 0;
-		while ((size = fis.read(buf)) > 0)
-			fos.write(buf, 0, size);
-
-		fos.close();
-		fis.close();
-
-		String fileName = file.getOriginalFilename();*/
 
 		service.tipInsert(tip.getTitle(), tip.getContent(), writerId);
 
@@ -380,6 +351,10 @@ public class BoardController {
 		service.updateAdviceHit(id);
 		Advice advice = service.getAdvice(id);
 		List<Advice> prevList = service.getPrevAdviceList(advice.getWriterId(), advice.getDate());
+		
+		//댓글 모델 설정
+  		List<Comment> list = service.getAdviceCommentList(id);
+  		model.addAttribute("adviceCommentList",list);
 
 		model.addAttribute("a", advice);
 		model.addAttribute("prevlist", prevList);
@@ -428,5 +403,48 @@ public class BoardController {
 		
 		return "redirect:../../advice";
 	}
+	
+	////////////////////// Advice 댓글 start //////////////////////
+
+    //AJAX 호출 (댓글 등록)
+    @RequestMapping(value="advice/comment/save", method=RequestMethod.POST)
+    @ResponseBody
+    public String AdviceCommentSave(@RequestParam Map<String, Object> objParams,Principal principal) {
+    	 
+        //정보입력
+    	String content = objParams.get("comment_content").toString();
+    	String advice_id = objParams.get("advice_id").toString();
+    	String writer_id = principal.getName();
+   
+        int result = service.adviceCommentInsert(content, advice_id, writer_id);
+        if(result>0){
+        	System.out.println("comment등록에 성공하였습니다.");
+        }else{
+            System.out.println("comment등록에 실패하였습니다.");
+        }
+       
+        return "aa";
+    }
+    
+    @RequestMapping(value="advice/comment/update-ajax", method=RequestMethod.GET)
+    @ResponseBody
+    public String AdviceCommentUpdate(@RequestParam String adviceId,@RequestParam String cId) {
+	
+    	//정보입력
+    	System.out.println("adviceId : "+adviceId+", id : "+cId);
+    	List<Comment> list = service.getAdviceUpdateCommentList(adviceId,cId);
+    	if(list==null)
+    		System.out.println("최신글입니다");
+    	else 
+    		System.out.println("최신 :"+list);
+    	
+    	String json = "";	
+		Gson gson = new Gson();
+		json = gson.toJson(list);
+		
+		return json;
+    }
+    
+    //////////////////////Advice 댓글 end //////////////////////
 	
 }
