@@ -283,7 +283,4 @@ public class BoardService {
 	public List<Advice> getPrevAdviceList(String id, Date date) {
 		return AdviceDao.getPrevAdviceList(id, date);
 	}
-
-
-
 }

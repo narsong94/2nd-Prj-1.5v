@@ -135,17 +135,6 @@ $(function() {
 	</table>
 	
 </div>
-<%-- <c:forEach var="pic" items="${pics}" varStatus="status">
-<div class="gallery">
-	<a target="_blank" href="advice"> 
-		<img src='${pic}' alt="Forest" width="300" height="200">
-	</a>
-	<div class="desc">
-		<input id="button" type="button" class="like${status.count}" name="${status.count}" value="이거 사">
-  		<p id="count-${status.count}">${vl.like1}개</p>
-  	</div>
-</div>
-</c:forEach> --%>
 
 <div class="next-prev">
 <table>

@@ -48,10 +48,15 @@ public class SpringUserDao implements UserDao {
 		
 		int del = template.update(sql, id);
 		template.update(adviceSql, id);
+		System.out.println("해당 id advice 게시글 삭제");
 		template.update(votingSql, id);
+		System.out.println("해당 id voting 게시글 삭제");
 		template.update(freeSql, id);
+		System.out.println("해당 id free 게시글 삭제");
 		template.update(infoSql, id);
+		System.out.println("해당 id info 게시글 삭제");
 		template.update(tipSql, id);
+		System.out.println("해당 id tip 게시글 삭제");
 		
 		return del;
 	}
@@ -66,9 +71,27 @@ public class SpringUserDao implements UserDao {
 
 	@Override
 	public int update(String id, User user) {
-		String sql = "update User set pw = ?, nickname = ?, weight = ?, height = ?, phone = ? where id = ?;";
+		String sql = "update User set pw = ?, weight = ?, height = ?, phone = ? where id = ?;";
 
-		int result = template.update(sql, user.getPw(), user.getNickName(), user.getWeight(), user.getHeight(), user.getPhone(), id);
+		int result = template.update(sql, user.getPw(), user.getWeight(), user.getHeight(), user.getPhone(), id);
+		
+		return result;
+	}
+
+	@Override
+	public int setUser(String id, String pw, String name, String gender, String age, String phone, String weight,
+			String height) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int setUser(User user) {
+		String sql = "insert into User(id, pw, name,gender, age, phone, weight, height) values(?, ?, ?, ?, ?, ?, ?, ?);";
+		
+		int result = template.update(sql, user.getId(), user.getPw(), 
+									user.getName(), user.getGender(), user.getAge(), user.getPhone(),
+									user.getWeight(), user.getHeight());
 		
 		return result;
 	}

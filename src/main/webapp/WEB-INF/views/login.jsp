@@ -9,7 +9,7 @@
 <div id="login">
 	<form id="login_form" action="${path}/login" method="post">
 		<label>아이디 : </label><input type="text" name="username" /><br /> 
-		<label>비밀번호 : </label><input type="text" name="password" /><br /> 
+		<label>비밀번호 : </label><input type="password" name="password" /><br /> 
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 		<input id="btnLogin" type="submit" value="로그인" />
 	</form>

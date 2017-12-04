@@ -17,4 +17,9 @@ public interface UserDao {
 
 	int update(String id, User user);
 
+	int setUser(String id, String pw, String name, String gender, String age, String phone, String weight,
+			String height);
+
+	int setUser(User user);
+
 }

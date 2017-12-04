@@ -274,7 +274,7 @@ public class BoardController {
 	public String voting(@RequestParam(value = "p", defaultValue = "1") int page, @RequestParam(value = "q", defaultValue = "") String query, Model model) {
 		
 		List<Voting> list = service.getVotingList(page, query);
-		int count = service.getVotingCount();
+		int count = service.getVotingCount();	// 조회수
 		
 		model.addAttribute("list", list);
 		model.addAttribute("count", count);
@@ -283,58 +283,40 @@ public class BoardController {
 	
 	@RequestMapping(value = "voting/{id}", method = RequestMethod.GET)
 	public String votingDetail(@PathVariable("id") String id, Model model, Principal principal) {
-		
+		// 사진투표------
 		List<String> pics = service.getVotingImgs(id);
 		VotingLike like = service.getVotingLike(id);
 		int voteUser = service.getVoteUser(principal.getName());
-		System.out.println(voteUser);
-		//System.out.println(like.getLike1());
+		// ------------
 		
 		Voting prev = service.getVotingPrev(id);
 		Voting next = service.getVotingNext(id);
 		service.updateVotingHit(id);
 
 		model.addAttribute("v", service.getVoting(id));
-		model.addAttribute("voteUser", voteUser);
-		model.addAttribute("pics", pics);
-		model.addAttribute("vl", like);
+		// 사진투표------
+		model.addAttribute("voteUser", voteUser);	
+		model.addAttribute("pics", pics);	
+		model.addAttribute("vl", like); 
+		// ------------
 		model.addAttribute("prev", prev);
 		model.addAttribute("next", next);
 
 		return "admin.board.voting.detail";
 	}
 	
+	// 사진 투표 단입니다!! 좋아요 단 아니에요!!!
 	@ResponseBody
 	@RequestMapping("voting/{id}/like")
 	public String votingLikeUp(@PathVariable("id") String id, @RequestParam("num") String num, Principal principal) {
-		System.out.println("!!!");
-		//VotingLike like = service.votingLikeUp(id, num);
+		
 		int voteNum = service.setVotingUserLike(id, principal.getName(), num);
 		
 		String str = Integer.toString(voteNum);
 		
 		return str;
 	}
-	
-	/*@RequestMapping("voting/{id}/like")
-	public VotingLike votingLikeUp(@PathVariable("id") String id) {
-		
-		VotingLike like = service.votingLikeUp(id);
-		System.out.println(like.getLike1());
-		
-		return like;
-	}*/
-	
-/*	@RequestMapping("voting/{id}/like")
-	public VotingLike votingLikeUp(@PathVariable("id") String id, @RequestParam("num") String num) {
-		System.out.println("!!!!!!");
-		VotingLike like = service.votingLikeUp(id, num);
-		System.out.println("like1: " + like.getLike1());
-		System.out.println("like2: " + like.getLike2());
-		System.out.println("like3: " + like.getLike3());
-		
-		return like;
-	}*/
+	//사진 투표 단입니다!! 좋아요 단 아니에요!!!
 	
 	@RequestMapping(value = "voting/{id}/edit", method = RequestMethod.GET)
 	public String votingUpdate(@PathVariable("id") String id, Model model) {

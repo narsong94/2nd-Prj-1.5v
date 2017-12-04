@@ -9,13 +9,7 @@ import com.prj.web.entity.VotingLike;
 
 public interface VotingLikeDao {
 
-	//VotingLike updateLike(String id);
-
 	int getVotingLike(String id, String num);
-
-	//int setVotingLike(int id);
-
-	//VotingLike updateLike(String id, String num);
 
 	int getVoteUser(String userId);
 
