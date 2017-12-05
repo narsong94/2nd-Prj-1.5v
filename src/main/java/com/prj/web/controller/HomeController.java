@@ -22,14 +22,9 @@ public class HomeController {
 		return "home.index";
 	}
 	
-	@RequestMapping(value="join", method=RequestMethod.GET)
-	public String join() {
-		return "home.join";
-	}
-	
 	@RequestMapping(value="join", method=RequestMethod.POST)
 	public String joinDone(User user, Model model) {
-		System.out.println(user.getPhone());
+		
 		int join = service.setUser(user);
 		
 		return "home.done";

@@ -83,13 +83,6 @@ $(function(){
 <a href="${ctx}/admin/board/voting/reg">추가하기</a>
 <div class="vcontainer">
 	<div class="slider">
-		<%-- <div class="vitem">
-			<a><img class="vimg" src="${ctx}/resource/img/test.jpg" /><img class = "vimg" src="${ctx}/resource/img/test.jpg" />
-			<span class="desc">
-				<strong>vs</strong>
-			</span>
-			</a>
-		</div>  --%>
 		<c:forEach var="v" items="${vList}">
 		<div class="vitem">
 			<a href="voting/${v.id}" id="vitem-a" class="btn-example">
