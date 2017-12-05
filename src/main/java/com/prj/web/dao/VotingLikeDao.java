@@ -11,7 +11,7 @@ public interface VotingLikeDao {
 
 	int getVotingLike(String id, String num);
 
-	int getVoteUser(String userId);
+	int getVoteUser(String userId, String vId);
 
 	int setVotingUserLike(String id, String userId, String num);
 

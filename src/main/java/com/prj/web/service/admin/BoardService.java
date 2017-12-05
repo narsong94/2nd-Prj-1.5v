@@ -12,6 +12,7 @@ import com.prj.web.dao.InfoDao;
 import com.prj.web.dao.VotingDao;
 import com.prj.web.dao.VotingLikeDao;
 import com.prj.web.dao.CommentDao;
+import com.prj.web.dao.UserDao;
 import com.prj.web.entity.Voting;
 import com.prj.web.entity.VotingLike;
 import com.prj.web.entity.Advice;
@@ -19,6 +20,7 @@ import com.prj.web.entity.Comment;
 import com.prj.web.entity.Free;
 import com.prj.web.entity.Info;
 import com.prj.web.entity.Tip;
+import com.prj.web.entity.User;
 
 public class BoardService {
 	
@@ -42,6 +44,9 @@ public class BoardService {
 	
 	@Autowired
 	private CommentDao CommentDao;
+	
+	@Autowired
+	private UserDao UserDao;
 	
 	/*--------------------------------- 자유 게시판 ---------------------------------*/
 	
@@ -212,6 +217,10 @@ public class BoardService {
 	}
 	
 	public List<String> getVotingImgs(String id) {
+		return VotingDao.getStringImgs(id);	
+	}
+	
+	public List<String> getVotingImgs(int id) {
 		return VotingDao.getImgs(id);	
 	}
 	
@@ -235,8 +244,8 @@ public class BoardService {
 		return VotingLikeDao.setVotingLike(id);
 	}*/
 
-	public int getVoteUser(String userId) {
-		return VotingLikeDao.getVoteUser(userId);
+	public int getVoteUser(String userId, String vId) {
+		return VotingLikeDao.getVoteUser(userId, vId);
 	}
 
 	public int setVotingUserLike(String id, String userId, String num) {
@@ -300,4 +309,9 @@ public class BoardService {
 	public List<Comment> getAdviceCommentList(String id) {
 		return CommentDao.getAdviceCommentList(id);
 	}
+
+	public User getWriterUser(String id) {
+		return VotingDao.getWriterUser(id);
+	}
+
 }

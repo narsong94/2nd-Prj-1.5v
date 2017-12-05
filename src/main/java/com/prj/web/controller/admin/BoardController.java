@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.security.Principal;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +30,7 @@ import com.prj.web.entity.Comment;
 import com.prj.web.entity.Free;
 import com.prj.web.entity.Info;
 import com.prj.web.entity.Tip;
+import com.prj.web.entity.User;
 import com.prj.web.entity.Voting;
 import com.prj.web.entity.VotingLike;
 import com.prj.web.service.admin.BoardService;
@@ -257,9 +259,10 @@ public class BoardController {
 		// 사진투표------
 		List<String> pics = service.getVotingImgs(id);
 		VotingLike like = service.getVotingLike(id);
-		int voteUser = service.getVoteUser(principal.getName());
+		int voteUser = service.getVoteUser(principal.getName(), id);
 		// ------------
 		
+		User user = service.getWriterUser(id);
 		Voting prev = service.getVotingPrev(id);
 		Voting next = service.getVotingNext(id);
 		service.updateVotingHit(id);
@@ -270,13 +273,36 @@ public class BoardController {
 		model.addAttribute("pics", pics);	
 		model.addAttribute("vl", like); 
 		// ------------
+		model.addAttribute("writer", user);	
 		model.addAttribute("prev", prev);
 		model.addAttribute("next", next);
 
 		return "admin.board.voting.detail";
 	}
 	
-	// 사진 투표 단입니다!! 좋아요 단 아니에요!!!
+	// 사진 투표 단입니다!! 좋아요 단 아니에요!!!-------------------------------
+	/*@ResponseBody
+	@RequestMapping("voting/{id}/imgs")
+	public String votingListImgs(@PathVariable("id") String id, Principal principal) {
+		System.out.println("sdfsdfsf");
+		//List<String> pics = service.getVotingImgs(id);
+			
+		System.out.println(pics.get(0));
+		System.out.println(pics.get(1));
+
+		Map<String, String> objects = new HashMap<String,String>();
+		objects.put("img1", pics.get(0));
+		objects.put("img2", pics.get(1));
+//		 "id" : 3
+		String json = "";
+		Gson gson = new Gson();
+		json = gson.toJson(objects); 
+		
+		return json;
+	}*/
+	//--------------------------------------------------------------
+	
+	// 사진 투표 단입니다!! 좋아요 단 아니에요!!!-------------------------------
 	@ResponseBody
 	@RequestMapping("voting/{id}/like")
 	public String votingLikeUp(@PathVariable("id") String id, @RequestParam("num") String num, Principal principal) {
@@ -287,7 +313,7 @@ public class BoardController {
 		
 		return str;
 	}
-	//사진 투표 단입니다!! 좋아요 단 아니에요!!!
+	//--------------------------------------------------------------
 	
 	@RequestMapping(value = "voting/{id}/edit", method = RequestMethod.GET)
 	public String votingUpdate(@PathVariable("id") String id, Model model) {
@@ -337,12 +363,24 @@ public class BoardController {
 		
 		List<Advice> list = service.getAdviceList(page, query);
 		int count = service.getAdviceCount();
+		List<Voting> vlist = service.getVotingList(page, query);
+		List<String> votingPics = null;		
+						
+		for(Voting v : vlist) {
+			votingPics = service.getVotingImgs(v.getId());
+			if(votingPics.isEmpty() == true) {
+				break;
+			}else {				
+				v.setPics(votingPics);
+			}
+		}
 		
+		model.addAttribute("vList", vlist);
 		model.addAttribute("list", list);
 		model.addAttribute("count", count);
-		return "admin.board.advice.list";
+		return "admin.board.codi.list";
 	}
-	
+	 
 	@RequestMapping("advice/{id}")
 	public String adviceDetail(@PathVariable("id") String id, Model model) {
 		

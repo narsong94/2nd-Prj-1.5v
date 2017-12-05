@@ -1,6 +1,7 @@
 package com.prj.web.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Voting {
 	private int id;
@@ -9,6 +10,8 @@ public class Voting {
 	private String writerId;
 	private int hit;
 	private Date date;
+	
+	private List<String> pics;
 	
 	public Voting() {
 	}
@@ -75,6 +78,14 @@ public class Voting {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public List<String> getPics() {
+		return pics;
+	}
+
+	public void setPics(List<String> pics) {
+		this.pics = pics;
 	}
 	
 	

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.prj.web.entity.User;
 import com.prj.web.entity.Voting;
 
 public interface VotingDao {
@@ -18,5 +19,7 @@ public interface VotingDao {
 	int insert(Voting voting);
 	int getNextId();
 	int delete(String id);
-	List<String> getImgs(String id);
+	List<String> getStringImgs(String id);
+	List<String> getImgs(int id);
+	User getWriterUser(String id);
 }
