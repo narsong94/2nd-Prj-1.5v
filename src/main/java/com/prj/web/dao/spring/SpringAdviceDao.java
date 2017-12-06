@@ -8,12 +8,14 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.prj.web.dao.AdviceCommentDao;
 import com.prj.web.dao.AdviceDao;
-import com.prj.web.dao.CommentDao;
+import com.prj.web.dao.AdviceLikeDao;
+import com.prj.web.dao.VotingCommentDao;
 import com.prj.web.entity.Advice;
 import com.prj.web.entity.Comment;
 
-public class SpringAdviceDao implements AdviceDao, CommentDao {
+public class SpringAdviceDao implements AdviceDao, AdviceCommentDao, AdviceLikeDao {
 
 	@Autowired
 	private JdbcTemplate template;
@@ -134,26 +136,69 @@ public class SpringAdviceDao implements AdviceDao, CommentDao {
 	//-------------- Advice 댓글 start --------------//
 	
 	@Override
-	public int adviceCommentInsert(String content, String advice_id, String writer_id) {
+	public int commentInsert(String content, String adviceId, String writerId) {
 		String sql = "insert into AdviceComment(content,adviceId,writerId) values(?,?,?)";
-		int result = template.update(sql,content, advice_id, writer_id);
-		
+	      int result = template.update(sql,content,adviceId,writerId);
+	      
+	      return result;
+	}
+
+	@Override
+	public List<Comment> getCommentList(String adviceId) {
+		String sql = "select * from AdviceComment where adviceId = ? order by id asc";
+	      List<Comment> list = template.query(sql, new Object[] {adviceId},
+	            BeanPropertyRowMapper.newInstance(Comment.class));
+	      return list;
+	}
+
+	@Override
+	public List<Comment> getUpdateCommentList(String adviceId) {
+		String sql = "select * from AdviceComment where adviceId = ? order by id asc";
+	      List<Comment> list = template.query(sql, new Object[] {adviceId},
+	            BeanPropertyRowMapper.newInstance(Comment.class));
+	      return list;
+	}
+
+	@Override
+	public int insert(String adviceId, String writerId) {
+		System.out.println("insert - adviceId , writerId : "+adviceId+","+writerId);
+		String sql = "insert into AdviceLikeWriterId(adviceId,WriterId) values(?,?)";
+		int result = template.update(sql, adviceId, writerId);
 		return result;
 	}
 
 	@Override
-	public List<Comment> getAdviceUpdateCommentList(String adviceId, String cId) {
-		String sql = "select * from AdviceComment where adviceId = ? and id > ? order by id asc";
-		List<Comment> list = template.query(sql, new Object[] {adviceId, cId},
-				BeanPropertyRowMapper.newInstance(Comment.class));
-		return list;
+	public int updateLikeCount(String adviceId) {
+		String sql = "update Advice set likeNum=likeNum+1 where id =?";
+		int result = template.update(sql, adviceId);
+		return result;
 	}
-	
+
 	@Override
-	public List<Comment> getAdviceCommentList(String id) {
-		String sql = "select * from AdviceComment where adviceId = ? order by id asc";
-		List<Comment> list = template.query(sql, new Object[] {id},
-				BeanPropertyRowMapper.newInstance(Comment.class));
-		return list;
+	public int check(String adviceId, String writerId) {
+		System.out.println("check - adviceId , writerId : "+adviceId+","+writerId);
+		int id = 0;
+		String sql = "select id from AdviceLikeWriterId where writerId = ? and adviceId = ?";
+		try {
+			id = template.queryForObject(sql, new Object[] {writerId, adviceId}, Integer.class);
+			return id;
+		} catch (EmptyResultDataAccessException e) {
+			return 0;
+		}catch (Exception e) {
+			return -10;
+		}
+	}
+
+	@Override
+	public int count(String adviceId, String writerId) {
+		int count = 0;
+		String sql = "select likeNum from Advice where id = ?";
+		try {
+			count = template.queryForObject(sql, new Object[] {adviceId}, Integer.class);
+			return count;
+		} catch (Exception e) {
+			System.out.println("count조회에 실패하였습니다.");
+			return 0;
+		}
 	}
 }

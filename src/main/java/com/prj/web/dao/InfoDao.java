@@ -4,6 +4,10 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.prj.web.entity.Drama;
+import com.prj.web.entity.DramaObject;
+import com.prj.web.entity.Dramaview;
+import com.prj.web.entity.Imgview;
 import com.prj.web.entity.Info;
 
 public interface InfoDao {
@@ -27,4 +31,16 @@ public interface InfoDao {
 	int getNextId();
 
 	int getInfoCount();
+
+	List<Imgview> getId();
+
+	int getDramaNextId();
+
+	int dramaInsert(String name, String content, String writerId);
+
+	int dramaInsert(Drama drama);
+
+	List<Dramaview> getDramaId();
+
+	List<DramaObject> getDramaList(int page);
 }

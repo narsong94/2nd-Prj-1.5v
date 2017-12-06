@@ -11,13 +11,22 @@ import com.prj.web.dao.FreeDao;
 import com.prj.web.dao.InfoDao;
 import com.prj.web.dao.VotingDao;
 import com.prj.web.dao.VotingLikeDao;
-import com.prj.web.dao.CommentDao;
+import com.prj.web.dao.VotingCommentDao;
+import com.prj.web.dao.AdviceCommentDao;
+import com.prj.web.dao.InfoCommentDao;
+import com.prj.web.dao.TipCommentDao;
+import com.prj.web.dao.AdviceLikeDao;
+import com.prj.web.dao.TipLikeDao;
+import com.prj.web.dao.InfoLikeDao;
 import com.prj.web.dao.UserDao;
 import com.prj.web.entity.Voting;
 import com.prj.web.entity.VotingLike;
 import com.prj.web.entity.Advice;
 import com.prj.web.entity.Comment;
+import com.prj.web.entity.DramaObject;
+import com.prj.web.entity.Dramaview;
 import com.prj.web.entity.Free;
+import com.prj.web.entity.Imgview;
 import com.prj.web.entity.Info;
 import com.prj.web.entity.Tip;
 import com.prj.web.entity.User;
@@ -43,10 +52,24 @@ public class BoardService {
 	private VotingLikeDao VotingLikeDao;
 	
 	@Autowired
-	private CommentDao CommentDao;
+	private VotingCommentDao VotingCommentDao;
+	@Autowired
+	private AdviceCommentDao AdviceCommentDao;
+	@Autowired
+	private InfoCommentDao InfoCommentDao;
+	@Autowired
+	private TipCommentDao TipCommentDao;
+	
+	@Autowired
+	private AdviceLikeDao AdviceLikeDao;
+	@Autowired
+	private InfoLikeDao InfoLikeDao;
+	@Autowired
+	private TipLikeDao TipLikeDao;
 	
 	@Autowired
 	private UserDao UserDao;
+	
 	
 	/*--------------------------------- 자유 게시판 ---------------------------------*/
 	
@@ -132,6 +155,37 @@ public class BoardService {
 		return TipDao.updateHit(id);
 	}
 	
+	// 댓글 부분
+	public int tipCommentInsert(String content,String tipId ,String writerId) {
+		   return TipCommentDao.commentInsert(content, tipId, writerId);
+	}
+			  
+	public List<Comment> getTipCommentList(String tipId) {
+		return TipCommentDao.getCommentList(tipId);
+	} 
+			   
+	public List<Comment> getTipUpdateCommentList(String tipId) {
+		   return TipCommentDao.getUpdateCommentList(tipId);
+	}
+	
+	// 좋아요 부분
+	public Integer tipLikeCheck(String tip_id, String writer_id) {
+		return  TipLikeDao.check(tip_id,writer_id);
+	}
+
+	public int tipLikeCountUp(String tip_id) {
+		return TipLikeDao.updateLikeCount(tip_id);
+	}
+
+	public int tipLikeInsert(String tip_id, String writer_id) {
+		return TipLikeDao.insert(tip_id,writer_id);
+	}
+
+	public int tipLikecount(String tip_id, String writer_id) {
+		return  TipLikeDao.Count(tip_id,writer_id);
+	}
+
+	
 	/*--------------------------------- Info 게시판 ---------------------------------*/
 
 	public List<Info> getInfoList(int page) {
@@ -172,6 +226,58 @@ public class BoardService {
 	
 	public int updateInfoHit(String id) {
 		return InfoDao.updateHit(id);	
+	}
+	
+	// 댓글 부분
+	public int infoCommentInsert(String content,String infoId ,String writerId) {
+	    return InfoCommentDao.commentInsert(content, infoId, writerId);
+	}
+		  
+	public List<Comment> getInfoCommentList(String infoId) {
+		return InfoCommentDao.getCommentList(infoId);
+	} 
+		   
+	public List<Comment> getInfoUpdateCommentList(String infoId) {
+	    return InfoCommentDao.getUpdateCommentList(infoId);
+	}
+	
+	// 지워니가 한 부분
+	public List<Imgview> getId() {
+		return InfoDao.getId();
+	}
+
+	public int getDramaNextId() {
+		return InfoDao.getDramaNextId();
+	}
+
+	public int infoDramaInsert(String name, String content, String writerId) {
+		return InfoDao.dramaInsert(name, content, writerId);
+	}
+
+	public List<Dramaview> getdramaId() {
+		return InfoDao.getDramaId();
+	}
+
+	public List<DramaObject> getDramaList(int page) {
+		return InfoDao.getDramaList(page);
+	}
+	
+	// 좋아요 부분
+
+	public int infoLikeCountUp(String info_id) {
+		return InfoLikeDao.updateLikeCount(info_id);
+	}
+
+	public int infoLikeInsert(String info_id, String writer_id) {
+		return InfoLikeDao.insert(info_id,writer_id);
+	}
+
+	public Integer infoLikeCheck(String info_id, String writer_id) {
+		return  InfoLikeDao.check(info_id,writer_id);
+	}
+
+	public int infoLikecount(String info_id, String writer_id) {
+		return  InfoLikeDao.Count(info_id,writer_id);
 	}
 	
 	/*--------------------------------- Voting 게시판 ---------------------------------*/
@@ -239,10 +345,6 @@ public class BoardService {
 	public VotingLike getVotingLike(String id) {
 		return VotingLikeDao.getVotingLike(id);
 	}
-/*
-	public int setVotingLike(int id) {
-		return VotingLikeDao.setVotingLike(id);
-	}*/
 
 	public int getVoteUser(String userId, String vId) {
 		return VotingLikeDao.getVoteUser(userId, vId);
@@ -250,6 +352,19 @@ public class BoardService {
 
 	public int setVotingUserLike(String id, String userId, String num) {
 		return VotingLikeDao.setVotingUserLike(id, userId, num);
+	}
+	
+	// 댓글 부분
+	public int votingCommentInsert(String content,String votingId ,String writerId) {
+	    return VotingCommentDao.commentInsert(content, votingId, writerId);
+	}
+	  
+	public List<Comment> getVotingCommentList(String votingId) {
+		return VotingCommentDao.getCommentList(votingId);
+	} 
+	   
+	public List<Comment> getVotingUpdateCommentList(String votingId) {
+	    return VotingCommentDao.getUpdateCommentList(votingId);
 	}
 
 	/*--------------------------------- Advice 게시판 ---------------------------------*/
@@ -298,20 +413,39 @@ public class BoardService {
 		return AdviceDao.getPrevAdviceList(id, date);
 	}
 
-	public int adviceCommentInsert(String content, String advice_id, String writer_id) {
-		return CommentDao.adviceCommentInsert(content, advice_id, writer_id);
-	}
-
-	public List<Comment> getAdviceUpdateCommentList(String adviceId, String cId) {
-		return CommentDao.getAdviceUpdateCommentList(adviceId, cId);
-	}
-	
-	public List<Comment> getAdviceCommentList(String id) {
-		return CommentDao.getAdviceCommentList(id);
-	}
-
 	public User getWriterUser(String id) {
 		return VotingDao.getWriterUser(id);
 	}
+
+	// 댓글 부분
+	public int adviceCommentInsert(String content,String adviceId ,String writerId) {
+	    return AdviceCommentDao.commentInsert(content, adviceId, writerId);
+	}
+		  
+	public List<Comment> getAdviceCommentList(String adviceId) {
+		return AdviceCommentDao.getCommentList(adviceId);
+	} 
+		   
+	public List<Comment> getAdviceUpdateCommentList(String adviceId) {
+	    return AdviceCommentDao.getUpdateCommentList(adviceId);
+	}
+
+	// 좋아요 부분
+	public int adviceLikecount(String advice_id, String writer_id) {
+		return AdviceLikeDao.count(advice_id,writer_id);
+	}
+
+	public int adviceLikeCountUp(String advice_id) {
+		return AdviceLikeDao.updateLikeCount(advice_id);
+	}
+
+	public int adviceLikeInsert(String advice_id, String writer_id) {
+		return AdviceLikeDao.insert(advice_id,writer_id);
+	}
+
+	public int  adviceLikeCheck(String advice_id, String writer_id) {
+		return AdviceLikeDao.check(advice_id,writer_id);
+	}
+
 
 }

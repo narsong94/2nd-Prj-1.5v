@@ -7,11 +7,14 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.prj.web.dao.TipCommentDao;
 import com.prj.web.dao.TipDao;
+import com.prj.web.dao.TipLikeDao;
+import com.prj.web.entity.Comment;
 import com.prj.web.entity.Free;
 import com.prj.web.entity.Tip;
 
-public class SpringTipDao implements TipDao {
+public class SpringTipDao implements TipDao, TipCommentDao, TipLikeDao {
 
 	@Autowired
 	private JdbcTemplate template;
@@ -116,6 +119,73 @@ public class SpringTipDao implements TipDao {
 		int del = template.update(sql, id);
 		
 		return del;
+	}
+
+	@Override
+	public int commentInsert(String content, String tipId, String writerId) {
+		String sql = "insert into TipComment(content,tipId,writerId) values(?,?,?)";
+	      int result = template.update(sql,content,tipId,writerId);
+	      
+	      return result;
+	}
+
+	@Override
+	public List<Comment> getCommentList(String tipId) {
+		String sql = "select * from TipComment where tipId = ? order by id asc";
+	      List<Comment> list = template.query(sql, new Object[] {tipId},
+	            BeanPropertyRowMapper.newInstance(Comment.class));
+	      return list;
+	}
+
+	@Override
+	public List<Comment> getUpdateCommentList(String tipId) {
+		String sql = "select * from TipComment where tipId = ? order by id asc";
+	      List<Comment> list = template.query(sql, new Object[] {tipId},
+	            BeanPropertyRowMapper.newInstance(Comment.class));
+	      return list;
+	}
+
+	@Override
+	public int insert(String tipId, String writerId) {
+		System.out.println("insert - tipId , writerId : "+tipId+","+writerId);
+		String sql = "insert into TipLikeWriterId(tipId,WriterId) values(?,?)";
+		int result = template.update(sql, tipId, writerId);
+		return result;
+	}
+
+	@Override
+	public int updateLikeCount(String tipId) {
+		String sql = "update Tip set likeNum=likeNum+1 where id =?";
+		int result = template.update(sql, tipId);
+		return result;
+	}
+
+	@Override
+	public int check(String tipId, String writerId) {
+		System.out.println("check - tipId , writerId : "+tipId+","+writerId);
+		int id = 0;
+		String sql = "select id from TipLikeWriterId where writerId = ? and tipId = ?";
+		try {
+			id = template.queryForObject(sql, new Object[] {writerId, tipId}, Integer.class);
+			return id;
+		} catch (EmptyResultDataAccessException e) {
+			return 0;
+		}catch (Exception e) {
+			return -10;
+		}
+	}
+
+	@Override
+	public int Count(String tipId, String writerId) {
+		int count = 0;
+		String sql = "select likeNum from Tip where id = ?";
+		try {
+			count = template.queryForObject(sql, new Object[] {tipId}, Integer.class);
+			return count;
+		} catch (Exception e) {
+			System.out.println("count조회에 실패하였습니다.");
+			return 0;
+		}
 	}
 
 }

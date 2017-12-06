@@ -10,13 +10,15 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.prj.web.dao.VotingCommentDao;
 import com.prj.web.dao.VotingDao;
 import com.prj.web.dao.VotingLikeDao;
+import com.prj.web.entity.Comment;
 import com.prj.web.entity.User;
 import com.prj.web.entity.Voting;
 import com.prj.web.entity.VotingLike;
 
-public class SpringVotingDao implements VotingDao, VotingLikeDao {
+public class SpringVotingDao implements VotingDao, VotingLikeDao, VotingCommentDao {
 
 	@Autowired
 	private JdbcTemplate template;
@@ -299,4 +301,27 @@ public class SpringVotingDao implements VotingDao, VotingLikeDao {
 		return user;
 	}
 
+	@Override
+	public List<Comment> getCommentList(String id) {
+		String sql = "select * from VotingComment where votingId = ? order by id asc";
+	      List<Comment> list = template.query(sql, new Object[] {id},
+	            BeanPropertyRowMapper.newInstance(Comment.class));
+	      return list;
+	}
+
+	@Override
+	public List<Comment> getUpdateCommentList(String id) {
+		 String sql = "select * from VotingComment where votingId = ? order by id asc";
+	      List<Comment> list = template.query(sql, new Object[] {id},
+	            BeanPropertyRowMapper.newInstance(Comment.class));
+	      return list;
+	}
+
+	@Override
+	public int commentInsert(String content, String id, String writerId) {
+		String sql = "insert into VotingComment(content,votingId,writerId) values(?,?,?)";
+	      int result = template.update(sql,content,id,writerId);
+	      
+	      return result;
+	}
 }
