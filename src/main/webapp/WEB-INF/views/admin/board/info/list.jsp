@@ -466,7 +466,7 @@ $(function() {
 						
 						 
 								<li>
-									 <a href="info/tip/${tip.id}">
+									 <a href="tip/${tip.id}">
 									
 									<p class='imgOverV15'>
 									<img src="${path}/${tip.src}"  />

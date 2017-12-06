@@ -60,9 +60,14 @@ $(function() {
 			<li><a href="${path}/admin/board/advice">advice</a></li>
 		</ul>
 		</security:authorize>
-		<security:authorize access="hasRole('ROLE_MEMBER') or !hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')">
+		<security:authorize access="hasRole('ROLE_MEMBER')">
 		<ul>
 			<li><a href="${path}/member/board/advice">advice</a></li>
+		</ul>
+		</security:authorize>
+		<security:authorize access="!hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')">
+		<ul>
+			<li><a href="${path}/login">advice</a></li>
 		</ul>
 		</security:authorize>
 	</div>
@@ -73,9 +78,14 @@ $(function() {
 			<li><a href="${path}/admin/board/voting">voting</a></li>
 		</ul>
 		</security:authorize>
-		<security:authorize access="hasRole('ROLE_MEMBER') or !hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')">
+		<security:authorize access="hasRole('ROLE_MEMBER')">
 		<ul>
 			<li><a href="${path}/member/board/voting">voting</a></li>
+		</ul>
+		</security:authorize>
+		<security:authorize access="!hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')">
+		<ul>
+			<li><a href="${path}/login">voting</a></li>
 		</ul>
 		</security:authorize>
 	</div>
@@ -86,9 +96,14 @@ $(function() {
 			<li><a href="${path}/admin/board/info">info</a></li>
 		</ul>
 		</security:authorize>
-		<security:authorize access="hasRole('ROLE_MEMBER') or !hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')">
+		<security:authorize access="hasRole('ROLE_MEMBER')">
 		<ul>
 			<li><a href="${path}/member/board/info">info</a></li>
+		</ul>
+		</security:authorize>
+		<security:authorize access="!hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')">
+		<ul>
+			<li><a href="${path}/login">info</a></li>
 		</ul>
 		</security:authorize>
 	</div>
@@ -104,6 +119,11 @@ $(function() {
 			<li><a href="${path}/member/board/tip">tip</a></li>
 		</ul>
 		</security:authorize>
+		<security:authorize access="!hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')">
+		<ul>
+			<li><a href="${path}/login">tip</a></li>
+		</ul>
+		</security:authorize>
 	</div>
 	<div id="free">
 		<!-- <a>다함께 이야기</a> -->
@@ -115,6 +135,11 @@ $(function() {
 		<security:authorize access="hasRole('ROLE_MEMBER') or !hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')">
 		<ul>
 			<li><a href="${path}/member/board/free">free</a></li>
+		</ul>
+		</security:authorize>
+		<security:authorize access="!hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')">
+		<ul>
+			<li><a href="${path}/login">free</a></li>
 		</ul>
 		</security:authorize>
 	</div>
