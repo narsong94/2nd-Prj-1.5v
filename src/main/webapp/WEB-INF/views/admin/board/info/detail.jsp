@@ -1,56 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<link rel="stylesheet" type="text/css" href="${path}/resource/css/board/info.css">
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${path}/resource/css/board/info/info.css">
 <script>
-$(function() {
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > 200) {
-            $('#MOVE_TOP_BTN').fadeIn();
-        } else {
-            $('#MOVE_TOP_BTN').fadeOut();
-        }
-    });
-    
-    $("#MOVE_TOP_BTN").click(function() {
-        $('html, body').animate({
-            scrollTop : 0
-        }, 400);
-        return false;
-    });
-});
-
 </script>
 
-<main>
-<input type="hidden" id="info_id" name="info_id" value="${i.id}" />	
-<table>
-	<tbody>
-		<tr>
-			<th>제목</th>
-			<td colspan="2">${i.title}</td>
-		</tr>
-		<tr>
-			<th>조회수</th>
-			<td>${i.hit}</td>
-		</tr>
-		</tr> --%>
-		<tr class="content">
-			<td colspan="3"><c:forEach var="file" items="${files}"
-					varStatus="s">
-					<img src="upload/${file.src}" />
-				</c:forEach> ${i.content}<br />
-		</tr>
-	</tbody>
-</table>
+<main class="main clearfix">
+<input type="hidden" id="info_id" name="info_id" value="${i.id}" />
+<div id="leftWrapper" class="clearfix">
+         <div class="left-round"></div>
+         <div id="calendarWrapper" style="background:#ffffff;width:753.99px;height:0px;">
+            <!-- 달력 모듈 -->
+            <div id="calendar" class="floatWrapper"> 
+            </div>
+         </div><!-- calendarWrapper close -->
+         <div id="contentContainer">
+            <div id="content">
+                  <!-- 포스트의 본문이 시작되는 곳입니다. -->
+                  <div class="entry">
+                     <div class="titleWrap floatWrapper">
+
+                        <!-- 자바스크립트 날짜 이미지 -->
+                        <div class="dateImg"><span class="imgdate">${i.date}</span></div>
+                        <h2>
+                           <a href="/221">${i.title}</a>
+                           <span class="category"><a href="/category/I.lib%28%29/I.lib%28JSTL%29">${i.writerId}</a></span><span class="date">${i.date }      조회수 : ${i.hit}</span></h2>
+                     </div><!-- titleWrap close -->
+                     
+
+                     <div class="article">
+                     <!-- 포스팅 본문이 들어가는 부분입니다. -->
+            <c:forEach var="file" items="${files}"
+               varStatus="s">
+               <img src="upload/${file.src}" />
+            </c:forEach> ${i.content}
+<div class="space"></div>
 <!-- -----------------------------------2.좋아요 start-------------------------------------------------- -->
-<input type="hidden" id="info_id" name="info_id" value="${img.id}" /> <a
-	id="likeCount">${likeCount}</a>
-<button id="like_save" name="like_save">좋아용!</button>
+<input type="hidden" id="info_id" name="info_id" value="${img.id}" /> 
+	<div style="margin: auto; text-align: center;">
+<button id="like_save" name="like_save">♥</button>
+</div>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
@@ -71,19 +63,105 @@ $(function() {
 					var idCheck = json['idCheck'];
 					//var idCheck = data.idCheck;//안대~
 					var likeCount = json['likeCount'];
-					if (idCheck > 0)
+					if (idCheck > 0){
 						alert("이미 좋아요를 누르셨습니다.");
+						$("#like_save").text(likeCount + "명이 좋아합니다");						
+					}
 					else if (idCheck == -10)
 						alert("죄송합니다. 오류가 생겼습니다. 빠른시일내로 복구하겠습니다.");
-					$("#likeCount").text(likeCount);
+					$("#like_save").text(likeCount + "명이 좋아합니다");
+					$('#like_save').blur();
 				});
 
 			});
 	//좋아요
 </script> <!-- -----------------------------------2.좋아요 end-------------------------------------------------- -->
 
-<!---------------------------- 댓글 -------------------------------->
 
+<div class="autosourcing-stub">
+<p style="FONT-SIZE: 12px; FONT-FAMILY: dotum; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 20px 0px 30px; PADDING-RIGHT: 0px">
+
+
+
+ <div style="width:100%;margin-top:30px;clear:both;height:30px">   
+
+ 
+ 
+    
+ <div class="entry-ccl" style="float:right;margin-top:0;height:0">
+<a href="http://creativecommons.org/licenses/by-nc-nd/4.0/deed.ko" target="_blank" style="text-decoration: none">
+<img id="ccl-icon-221-0" class="entry-ccl-by" src="https://t1.daumcdn.net/tistory_admin/static/admin/editor/ccl_black01.png?_version_=896dfff6a1b64c596188a1c1dc69a8070820800e" onmouseover="tistoryCcl.show(this, 1)" onmouseout="tistoryCcl.hide()" alt="저작자 표시" style="width:15px;height:15px">
+<img id="ccl-icon-221-1" class="entry-ccl-nc" src="https://t1.daumcdn.net/tistory_admin/static/admin/editor/ccl_black02.png?_version_=896dfff6a1b64c596188a1c1dc69a8070820800e" onmouseover="tistoryCcl.show(this, 1)" onmouseout="tistoryCcl.hide()" alt="비영리" style="width:15px;height:15px">
+<img id="ccl-icon-221-2" class="entry-ccl-nd" src="https://t1.daumcdn.net/tistory_admin/static/admin/editor/ccl_black03.png?_version_=896dfff6a1b64c596188a1c1dc69a8070820800e" onmouseover="tistoryCcl.show(this, 1)" onmouseout="tistoryCcl.hide()" alt="변경 금지" style="width:15px;height:15px">
+</a>
+      </div>
+               <script type="text/javascript">
+            if (/MSIE [0-6]\./.test(navigator.userAgent)) {
+               for (var i = 0; i <3; i++) {
+                  var el = document.getElementById('ccl-icon-221-' + i);
+                  el.style.filter = 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src="' + el.src + '",sizingMethod="image")';
+                  el.src = 'https://t1.daumcdn.net/tistory_admin/static/admin/form/s.gif?_version_=896dfff6a1b64c596188a1c1dc69a8070820800e';
+               }
+            }
+         </script>
+         <div class="post_btn"style="width: 130px;float:left;">
+         <a href="/toolbar/popup/abuseReport/?entryId=221" onclick="window.open(this.href, 'tistoryThisBlogPopup', 'width=550, height=510, toolbar=no, menubar=no, status=no, scrollbars=no'); return false;">
+         <img style="border:0" src="//t1.daumcdn.net/tistory_admin/static/ico/ico_spam_report.png" alt="신고">
+         </a>
+         <a href="../info/${i.id}/edit"><img src="${path}/resource/img/설정.PNG" style="height: 20px; width:20px; "/></a>
+         <a href="../info/${i.id}/del"><img src="${path}/resource/img/삭제.png" style="height: 20px; width:20px; "/></a>
+         </div>
+         
+         </div>
+         
+         
+         <div class="another_category another_category_color_gray">
+</div></div>
+
+      </div>
+      
+      <div class="trailWrapper floatWrapper">
+         <div class="actionTrail">
+            <a href="#rp" onclick="toggleLayerForEntry('221', 'comment'); return false"><span id="commentCount221">Comment (<span class="cnt">2</span>)</span></a>
+         </div>
+         <div class="author">
+            <span class="text">Posted by </span>${i.date }
+         </div>
+      </div>
+      <div id="entry221Trackback" style="display:none">
+         <div class="trackback">
+            <h3><span>TRACKBACK</span> | </h3>
+            
+         </div><!-- trackback close -->
+      </div>
+      <div id="entry221Comment" style="display:block">
+         <div class="comment">
+            <h3>댓글을 달아 주세요 </h3>
+            <div class="commentList">
+               
+         
+   <ol>
+<%--       <table id="comment_area">
+      <tbody>
+        <c:forEach var="comment" items="${infoCommentList}" varStatus="status">
+         <li id="comment11225083">
+            <div class="rp_general">
+               <span class="name">  <a href="http://9577.tourisme67.fr/nikefreerun.php" onclick="return openLinkInNewWindow(this)">${comment.writerId }</a></span>
+               <span class="date"> ${comment.date} <a href="/toolbar/popup/abuseReport/?entryId=221&amp;commentId=11225083" onclick="window.open(this.href, 'tistoryThisBlogPopup', 'width=550, height=510, toolbar=no, menubar=no, status=no, scrollbars=no'); return false;">신고</a></span>
+               <span class="control">
+                  <!-- <a href="/221#comment11225083" class="address" title="댓글주소">&nbsp;<span>댓글주소</span></a> -->
+                  <input type="checkbox" id="${comment.id}" name="${comment.id}" value="${comment.id}"/>
+                  <input type="hidden" class="infoComment_id" name="infoComment_id" value="${comment.id}" /> 
+                  <!-- <a href="#" onclick="deleteComment(11225083);return false" class="modify" title="수정/삭제">&nbsp;<span>수정/삭제</span></a> -->
+                  <!-- <a href="#" onclick="commentRequireLoginByDormancy(); return false;commentComment(11225083); return false" class="write" title="댓글쓰기">&nbsp;<span>댓글쓰기</span></a>
+             -->   </span>
+               <p>${comment.content }</p>
+            </div>
+         </li>
+         
+         </c:forEach>
+      </tbody>
+</table> --%>
 <!--DB에서 가져온 댓글테이블  -->
 <table id="comment_area">
    <!-- 전체를 새로고침 할것이기때문에 필요없음 -->
@@ -98,16 +176,32 @@ $(function() {
    </tr>
    </template>
 </table>
-<!-- 댓글 삽입하는 테이블 -->
-<table>
-   <tr>
-      <td><textarea id="comment_content" name="comment_content"
-            placeholder="댓글을 입력하세요."></textarea></td>
-      <td><button id="comment_save" name="comment_save">댓글 등록</button></td>
-      <td><button id="comment_update" name="comment_update">리플
-            새로고침</button></td>
-   </tr>
-</table>
+
+
+   </ol>         
+            </div><!-- commentList close -->
+
+
+
+            <form method="post" action="/comment/add/221" onsubmit="return false" style="margin: 0">
+               <div class="commentWrite">
+                  <div class="writeWrapper">                     
+                     <p><textarea name="comment_content" cols="50" rows="6" id="comment_content" placeholder="댓글을 입력하세요."></textarea></p>
+                     <div class="ripple_btn">
+                        <p class="button"><button id="comment_save" name="comment_save"><img src="${path}/resource/img/등록.PNG" style="height: 30px; width:30px; "/></button></p>
+                        <p class="button"><button id="comment_update" name="comment_update"><img src="${path}/resource/img/새로고침.PNG" style="height: 30px; width:30px; "/></button></p>
+                     </div>
+
+                  </div><!-- writeWrapper close -->
+               </div><!-- commentWrite close -->
+            </form>
+         </div><!-- comment close -->
+     <!--  </div><script type="text/javascript">loadedComments[221]=true;highlight()</script> -->
+   </div><!-- entry close -->
+
+
+<!---------------------------- 댓글 -------------------------------->
+
 <!-- Bootstrap --> <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요한) --> <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
@@ -201,47 +295,43 @@ $(function() {
 
 
 <!---------------------------------------------------------------->
-<table>
-	<tbody>
-		<c:if test="${empty next}">
-			<tr>
-				<th>다음글</th>
-				<td colspan="3">다음글이 없습니다.</td>
-			</tr>
-		</c:if>
-		<c:if test="${not empty next}">
-			<tr>
-				<th>다음글</th>
-				<td colspan="3">
-					<a href="${next.id}">${next.title}</a>
-				</td>
-			</tr>
-		</c:if>
-		<c:if test="${empty prev}">
-			<tr>
-				<th>이전글</th>
-				<td colspan="3">이전글이 없습니다.</td>
-			</tr>
-		</c:if>
-		<c:if test="${not empty prev}">
-			<tr>
-				<th>이전글</th>
-				<td colspan="3">
-					<a href="${prev.id}">${prev.title}</a>
-				</td>
-			</tr>
-		</c:if>
-	</tbody>
-</table>
-
-<div>
-	<a href="../info">목록</a>
+<div id="paging">
+	<div>
+      <c:if test="${empty prev}">
+         	이전글 : 이전글이 없습니다.
+      </c:if>
+      <c:if test="${not empty prev}">
+      		이전글 : <a href="${prev.id}">${prev.title}</a>
+      </c:if>
+	</div>
+	<div>
+      <c:if test="${empty next}">
+     		 다음글 : 다음글이 없습니다.
+      </c:if>
+      <c:if test="${not empty next}">
+      		다음글 : <a  href="${next.id}">${next.title}</a>
+      </c:if>
+	</div>
 </div>
 
+<!--       <div style="margin: auto; text-align: center; margin-bottom: 60px; margin-top: 50px;">
+      <a class="move-list" href="../info">목록으로 이동</a>   
+      </div> -->
+      
+      <div class="button_base b03_skewed_slide_in">
+        <div><a href="../info">목록으로 이동</a></div>
+        <div></div>
+        <div><a href="../info">목록으로 이동</a></div>
+    </div>
+      
+            </div><!-- content close -->
+         </div><!-- contentContainer close -->
+      </div>
+
 <div>
-	<a href="../info/${i.id}/edit">수정하기</a>
-	<a href="../info/${i.id}/del">삭제하기</a>
+   <!-- <a href="../info">목록</a> -->
 </div>
+
 
 <a id="MOVE_TOP_BTN" href="#">TOP</a>
 

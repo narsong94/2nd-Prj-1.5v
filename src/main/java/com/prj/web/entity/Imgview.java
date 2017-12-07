@@ -6,17 +6,19 @@ public class Imgview {
 	private int id;
 	private String title;
 	private String content;
+	private int likeNum;
 	
 	public Imgview() {
 		
 	}
 	
 	
-	public Imgview(int id, String title, String content) {
+	public Imgview(int id, String title, String content, int likeNum) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.content = content;
+		this.likeNum = likeNum;
 	}
 	public int getId() {
 		return id;
@@ -37,7 +39,13 @@ public class Imgview {
 		this.content = content;
 	}
 	
-	
+	public int getLikeNum() {
+	      return likeNum;
+	   }
+
+	   public void setLikeNum(int likeNum) {
+	      this.likeNum = likeNum;
+	   }
 	
 	
 }

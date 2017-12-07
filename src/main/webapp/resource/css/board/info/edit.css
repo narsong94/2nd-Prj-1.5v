@@ -1,0 +1,22 @@
+
+.slidesjs-slide .left_blk {
+	margin-right: 132px !important;
+	    margin-left: 25px;
+}
+
+.slidesjs-container {
+	width: 100% !important;
+}
+
+p.sub_title{
+	list-style: none !important;
+	
+}
+
+.tit {
+	color: black;
+}
+.tit:hover, .tit:link {
+	color: black;
+	text-decoration: none;
+}

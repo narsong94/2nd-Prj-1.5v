@@ -21,33 +21,34 @@
 					<input class="menu-selector" id="logoutBtn" type="submit" value="Logout"/>
 				</form>
 			</li>
-			<security:authorize access="hasRole('ROLE_ADMIN')">
+			<%-- <security:authorize access="hasRole('ROLE_ADMIN')">
 				<li><a class="menu-selector" href="${path}/admin/mypage/index">Mypage</a></li>
 			</security:authorize>
 			<security:authorize access="hasRole('ROLE_MEMBER')">
 				<li><a class="menu-selector" href="${path}/member/mypage/index">Mypage</a></li>
-			</security:authorize>
+			</security:authorize> --%>
 		</security:authorize>
 		<%-- </c:if> --%>
-		<li><a class="menu-selector" href="#about">About</a></li>
-		<li class="dropdown"> <a class="menu-selector" class="dropbtn">Board</a>
+		<security:authorize access="hasRole('ROLE_ADMIN')">
+			<li><a class="menu-selector" href="${path}/admin/board/info">Info</a></li>
+			<li><a class="menu-selector" href="${path}/admin/board/advice">Advice</a> </li>
+		</security:authorize>
+		<security:authorize access="hasRole('ROLE_MEMBER')">
+			<li><a class="menu-selector" href="${path}/member/board/info">Info</a></li>
+			<li><a class="menu-selector" href="${path}/member/board/advice">Advice</a> </li>
+		</security:authorize>
+		<%-- <li class="dropdown"> <a class="menu-selector" class="dropbtn">Board</a>
 			<div class="dropdown-content">
 				<security:authorize access="hasRole('ROLE_ADMIN')">
 					<a href="${path}/admin/board/advice">Advice</a> 
-					<a href="${path}/admin/board/voting">Voting</a> 
 					<a href="${path}/admin/board/info">Info</a>
-					<a href="${path}/admin/board/tip">Tip</a>
-					<a href="${path}/admin/board/free">Free</a>
 				</security:authorize>
 				<security:authorize access="hasRole('ROLE_MEMBER') ">
 					<a href="${path}/member/board/advice">Advice</a> 
-					<a href="${path}/member/board/voting">Voting</a> 
 					<a href="${path}/member/board/info">Info</a>
-					<a href="${path}/member/board/tip">Tip</a>
-					<a href="${path}/member/board/free">Free</a>
 				</security:authorize>
 			</div>
-		</li>
+		</li> --%>
 		<li><a class="menu-selector active" href="${path}/index">Home</a></li>
 	</ul> 
 

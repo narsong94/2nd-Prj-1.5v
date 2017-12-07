@@ -32,19 +32,28 @@ $(function() {
 			<security:authorize access="hasRole('ROLE_ADMIN')">
 				<li><a class="menu-selector" href="${path}/admin/mypage/index">Mypage</a></li>
 			</security:authorize>
-			<security:authorize access="hasRole('ROLE_MEMBER')">
+			<%-- <security:authorize access="hasRole('ROLE_MEMBER')">
 				<li><a class="menu-selector" href="${path}/member/mypage/index">Mypage</a></li>
-			</security:authorize>
+			</security:authorize> --%>
 		</security:authorize>
-		<li><a class="menu-selector" href="#about">About</a></li>
+		<security:authorize access="hasRole('ROLE_ADMIN')">
+			<li><a class="menu-selector scroll" id="#info">Info</a></li>
+			<li><a class="menu-selector scroll" id="#advice">Advice</a> </li>
+		</security:authorize>
+		<security:authorize access="hasRole('ROLE_MEMBER')">
+			<li><a class="menu-selector scroll" id="#info">Info</a></li>
+			<li><a class="menu-selector scroll" id="#advice">Advice</a> </li>
+		</security:authorize>
+		<security:authorize access="!hasRole('ROLE_ADMIN') and !hasRole('ROLE_MEMBER')">
+			<li><a class="menu-selector scroll" id="#info">Info</a></li>
+			<li><a class="menu-selector scroll" id="#advice">Advice</a> </li>
+		</security:authorize>
+		<!-- <li><a class="menu-selector" href="#about">About</a></li>
 		<li class="dropdown"><a class="menu-selector" class="dropbtn">Board</a>
 			<div class="dropdown-content">
 				<a class="scroll" id="#advice">Advice</a> 
-				<a class="scroll" id="#voting">Voting</a> 
 				<a class="scroll" id="#info">Info</a> 
-				<a class="scroll" id="#tip">Tip</a> 
-				<a class="scroll" id="#free">Free</a>
-			</div></li>
+			</div></li>  -->
 		<li><a class="menu-selector active scroll"
 			id="#home">Home</a></li>
 	</ul>
@@ -52,6 +61,7 @@ $(function() {
 
 <div id="main-menu">
 	<div id="home">
+		<h1 style="font-size: 70px; margin: 0; vertical-align: middle;">Which's Clothes</h1>
 	</div>
 	<div id="advice">
 		<!-- <a>패션 고민 해결</a> -->
@@ -68,24 +78,6 @@ $(function() {
 		<security:authorize access="!hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')">
 		<ul>
 			<li><a href="${path}/login">advice</a></li>
-		</ul>
-		</security:authorize>
-	</div>
-	<div id="voting">
-		<!-- <a>패션 결정 장애 극복</a> -->
-		<security:authorize access="hasRole('ROLE_ADMIN')">
-		<ul>
-			<li><a href="${path}/admin/board/voting">voting</a></li>
-		</ul>
-		</security:authorize>
-		<security:authorize access="hasRole('ROLE_MEMBER')">
-		<ul>
-			<li><a href="${path}/member/board/voting">voting</a></li>
-		</ul>
-		</security:authorize>
-		<security:authorize access="!hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')">
-		<ul>
-			<li><a href="${path}/login">voting</a></li>
 		</ul>
 		</security:authorize>
 	</div>
@@ -107,40 +99,67 @@ $(function() {
 		</ul>
 		</security:authorize>
 	</div>
-	<div id="tip">
-		<!-- <a>나에게 맞는 패션 정보들</a> -->
-		<security:authorize access="hasRole('ROLE_ADMIN')">
-		<ul>
-			<li><a href="${path}/admin/board/tip">tip</a></li>
-		</ul>
-		</security:authorize>
-		<security:authorize access="hasRole('ROLE_MEMBER') or !hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')">
-		<ul>
-			<li><a href="${path}/member/board/tip">tip</a></li>
-		</ul>
-		</security:authorize>
-		<security:authorize access="!hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')">
-		<ul>
-			<li><a href="${path}/login">tip</a></li>
-		</ul>
-		</security:authorize>
-	</div>
-	<div id="free">
-		<!-- <a>다함께 이야기</a> -->
-		<security:authorize access="hasRole('ROLE_ADMIN')">
-		<ul>
-			<li><a href="${path}/admin/board/free">free</a></li>
-		</ul>
-		</security:authorize>
-		<security:authorize access="hasRole('ROLE_MEMBER') or !hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')">
-		<ul>
-			<li><a href="${path}/member/board/free">free</a></li>
-		</ul>
-		</security:authorize>
-		<security:authorize access="!hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')">
-		<ul>
-			<li><a href="${path}/login">free</a></li>
-		</ul>
-		</security:authorize>
-	</div>
 </div>
+
+
+<script>
+jQuery.fn.letterDrop = function() {
+	  var obj = this;
+	  
+	  var drop = {
+	    arr : obj.text().split( '' ),
+	    
+	    range : {
+	      min : 1,
+	      max : 9
+	    },
+	    
+	    styles : function() {
+	      var dropDelays = '\n', addCSS;
+	      
+	       for ( i = this.range.min; i <= this.range.max; i++ ) {
+	         dropDelays += '.ld' + i + ' { animation-delay: 1.' + i + 's; }\n';  
+	       }
+	      
+	        addCSS = $( '<style>' + dropDelays + '</style>' );
+	        $( 'head' ).append( addCSS );
+	    },
+	    
+	    main : function() {
+	      var dp = 0;
+	      obj.text( '' );
+	      
+	      $.each( this.arr, function( index, value ) {
+
+	        dp = dp.randomInt( drop.range.min, drop.range.max );
+	        
+	        if ( value === ' ' )
+	          value = '&nbsp';
+	        
+	          obj.append( '<span class="letterDrop ld' + dp + '">' + value + '</span>' );
+	        
+	      });
+	          
+	    }
+	  };
+	   
+	  Number.prototype.randomInt = function ( min, max ) {
+	    return Math.floor( Math.random() * ( max - min + 1 ) + min );
+	  };
+	  
+	  
+	  // Create styles
+	  drop.styles();
+
+	  // Initiate
+	  drop.main();
+	   
+	};
+
+
+
+
+	$( 'h1' ).letterDrop();
+
+
+</script>

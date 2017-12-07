@@ -160,7 +160,7 @@ public class SpringInfoDao implements InfoDao, InfoCommentDao, InfoLikeDao {
 			System.out.println("title : " + getTitle2(list.get(i)));
 
 			// insert
-			update2(list.get(i), getImgsrc(list.get(i)), getTitle2(list.get(i)));
+			update2(list.get(i), getImgsrc(list.get(i)), getTitle2(list.get(i)), getLikeNum(list.get(i)));
 
 		}
 
@@ -169,9 +169,9 @@ public class SpringInfoDao implements InfoDao, InfoCommentDao, InfoLikeDao {
 		return list2;
 	}
 
-	private int update2(String id, String content, String title) {
-		String sql = "update Imgview set id=?,content=?,title=? where id =? ";
-		return template.update(sql, id, content, title, id);
+	private int update2(String id, String content, String title, int likeNum) {
+		String sql = "update Imgview set id=?,content=?,title=?,likeNum=? where id =? ";
+		return template.update(sql, id, content, title, likeNum, id);
 	}
 
 	private String getTitle2(String id) {
@@ -331,5 +331,17 @@ public class SpringInfoDao implements InfoDao, InfoCommentDao, InfoLikeDao {
 			return 0;
 		}
 	}
+	
+	 public int getLikeNum(String id) {
+	      int count = 0;
+	      String sql = "select likeNum from Info where id = ?";
+	      try {
+	         count = template.queryForObject(sql, new Object[] {id}, Integer.class);
+	         return count;
+	      } catch (Exception e) {
+	         System.out.println("count조회에 실패하였습니다.");
+	         return 0;
+	      }
+	   }
 
 }

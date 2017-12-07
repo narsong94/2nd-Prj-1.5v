@@ -1,13 +1,20 @@
 @charset "UTF-8";
 
-.main{
+.main {
 	max-width: 100%;
 	height: auto;
+	background: #F3F3F3;
+	font-size: 12px;
 }
 
-.space{
-	padding-top: 30px;
+.tit{
+	
 }
+
+.gds_name{
+	font-size: 12px;
+}
+
 .button_base {
     margin: 0;
     border: 0;
@@ -109,68 +116,6 @@
   	cursor: pointer;
 }
 
-.vcontainer{
-	margin: 100px auto 40px;
-	overflow: hidden;
-	position: relative;
-}
-
-.slider{
-	overflow: hidden;
-	position: relative;
-}
-
-.slide-btn {
-	text-align: center;
-}
-
-
-.vitem{
-	height: 250px; 
-	position: relative;
-	border: 2px solid #fff;
-	box-sizing: border-box;
-	float: left;
-}
-.vitem a .desc {	
-	display: none; 
-}
-
-.vitem a:hover .desc{ 
-	display: block;
-	letter-spacing:-1px;
-	line-height:140%;
-	padding: 10px 0;
-	background: #ffffff;
-	/* filter: alpha(opacity=20);
-	opacity: 0.2;  */
-	background-color: rgba( 255, 255, 255, 0.15 );
-	/* -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";  */
-	color: #fff;
-	position: absolute;
-	height: 250px;
-	margin: 0;
-}
-.vitem a:hover .desc strong { 
-	color:#cc0000;
-	display: block;
-	margin-left: 143px;
-	margin-top: 95px;
-	font-size: 60px;
-	font-family: dotum;
-	font-weight: bold;
-}
-
-.vitem a {
-    display: flex;
-    flex-direction: row;  
-}
-
-.vimg {
-	height: 250px;
-	float: left;
-}
-
 #result-table{
 	margin: auto	
 }
@@ -182,13 +127,9 @@
 
 .desc{
 	margin: auto;
-	    margin-left: 86px;
+	margin-left: 86px;
 }
 
-.votingSomenail{
-	margin: auto;
-    margin-bottom: 80px;
-}
 
 #MOVE_TOP_BTN {
 	position: fixed;
@@ -215,7 +156,6 @@
     clear: both;
     display: block;
 }
-
 
 .commentList #comment_area{
 	width: 100%;
@@ -692,7 +632,7 @@ a.cal_click:hover {
 /* 제목 */
 .titleWrap {
 	max-width: 100%;
-	background: #6ad1dc;
+	background: #fb6a8bc9;
 	padding-bottom: 14px;
 	margin-bottom: 3px;
 	    border-radius: 5px;
@@ -735,7 +675,7 @@ a.cal_click:hover {
 	font: normal 12px/14px Dotum, Helvetica, Arial, sans-serif;
 	color: #fff;
 	letter-spacing: 1px;
-	padding: 0 2px 0 0;
+	padding: 0 15px 0 0;
 	display: inline;
 }
 
@@ -1295,14 +1235,11 @@ textarea {
 #paging {
 	/* text-align: center; */
 	display: flex;
-    flex-direction: column;
+    flex-direction: column;  
 	font-size: 13px;
 	margin-bottom: 21px;
 	margin-left: 20px;
 	margin-top: 10px;
-}
-#next-page {
-	padding-left: 450px;
 }
 
 .ripple_btn {

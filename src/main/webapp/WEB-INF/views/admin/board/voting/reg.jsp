@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
+	
+<link rel="stylesheet" type="text/css" href="${path}/resource/css/board/voting.css">
 	
 <script type=text/javascript charset=utf-8 src="${pageContext.request.contextPath}/script/tinymce/js/tinymce/tinymce.min.js"></script>
 <meta name="_csrf" content="${_csrf.token}"/>
@@ -80,7 +84,7 @@ var header = $("meta[name='_csrf_header']").attr("content");
 $(function() {
 	var titleText = $("form input[name='title']");
 	var submitBtn = $("form input[type='submit']");
-	var cancelBtn = $(".btns a");
+	var cancelBtn = $(".login-link");
 
 	submitBtn.click(function(e) {
 		if (titleText.val() == "") {
@@ -103,7 +107,7 @@ $(function() {
 
 <form action="?${_csrf.parameterName}=${_csrf.token}" method="post"
 	enctype="multipart/form-data">
-	<table border="1">
+<%-- 	<table id="reg-table" border="1">
 		<tbody>
 			<tr>
 				<td>제목</td>
@@ -120,5 +124,30 @@ $(function() {
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 		<input id="set-data-btn" type="submit" value="등록" /> 
 		<a href="../voting">취소</a>
+	</div> --%>
+	
+	
+	<div class="login">
+		<div class="login-screen">
+			<div class="app-title">
+				<h1>Voting 게시글 작성</h1>
+			</div>
+
+			<div class="login-form">
+				<div class="control-group">
+				<input type="text" class="login-field" name="title" placeholder="제목을 넣어주세요" id="login-name">
+				<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+
+				<div class="control-group2">
+         		<textarea class="login_field" id="elm1" name="content" rows="20" cols="60"></textarea>
+				<label class="login-field-icon fui-lock" for="login-pass"></label>
+				</div>
+
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
+				<input class="btn btn-primary btn-large btn-block" id="set-data-btn" type="submit" value="등록" /> 
+				<a class="login-link" href="../advice">취소?</a>
+			</div>
+		</div>
 	</div>
 </form>

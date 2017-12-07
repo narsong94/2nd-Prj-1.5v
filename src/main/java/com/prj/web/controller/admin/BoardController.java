@@ -531,7 +531,7 @@ public class BoardController {
 
 		service.votingInsert(voting.getTitle(), voting.getContent(), writerId);
 
-		return "redirect:../voting";
+		return "redirect:../advice";
 	}
 
 	@RequestMapping("voting/{id}/del")
@@ -539,7 +539,7 @@ public class BoardController {
 
 		service.votingDel(id);
 
-		return "redirect:../../voting";
+		return "redirect:../../advice";
 	}
 
 	///////////////// ´ñ±Û start////////////////

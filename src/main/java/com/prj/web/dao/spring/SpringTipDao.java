@@ -148,7 +148,7 @@ public class SpringTipDao implements TipDao, TipCommentDao, TipLikeDao {
 	@Override
 	public int insert(String tipId, String writerId) {
 		System.out.println("insert - tipId , writerId : "+tipId+","+writerId);
-		String sql = "insert into TipLikeWriterId(tipId,WriterId) values(?,?)";
+		String sql = "insert into TipWriterId(tipId,WriterId) values(?,?)";
 		int result = template.update(sql, tipId, writerId);
 		return result;
 	}
@@ -164,7 +164,7 @@ public class SpringTipDao implements TipDao, TipCommentDao, TipLikeDao {
 	public int check(String tipId, String writerId) {
 		System.out.println("check - tipId , writerId : "+tipId+","+writerId);
 		int id = 0;
-		String sql = "select id from TipLikeWriterId where writerId = ? and tipId = ?";
+		String sql = "select id from TipWriterId where writerId = ? and tipId = ?";
 		try {
 			id = template.queryForObject(sql, new Object[] {writerId, tipId}, Integer.class);
 			return id;

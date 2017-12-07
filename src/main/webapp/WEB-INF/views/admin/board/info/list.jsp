@@ -5,6 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
+<link rel="stylesheet" type="text/css" href="${path}/resource/css/board/info/edit.css">
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -362,7 +363,7 @@ var V_CURRENTYYYYMM = "2017-11-30";
 
 			<div class='section exhibitV17'>
 			
-				<h2>
+				<h2 style="padding-left: 75px;">
 				<a href="/street/">
 				<img src="${path}/resource/img/info/TITLE/패션뉴스30.jpg" alt="BRAND STREET" /></a>
 				
@@ -397,7 +398,7 @@ var V_CURRENTYYYYMM = "2017-11-30";
 						<strong><span>${img.title}</span> </strong>
 
 						
-							<p class="sub-copy"><em  class='cRd0V15'>*좋아요 자리*</em></p>
+							<p class="sub-copy"><em  class='cRd0V15'>♥ ${img.likeNum}</em></p>
 						
 					</a>
 				</li>
@@ -1114,70 +1115,6 @@ $(function() {
 		</form>
 	</div>
 	<hr />
-<div class="footerWrapV15">
-	<div class="footerV15">
-		<ul class="footerLinkV15">
-			<li><a href="http://company.10x10.co.kr/" target="_blank"><strong>회사소개</strong></a></li>
-			<li><a href="http://company.10x10.co.kr/Recruit/List/" target="_blank">채용정보</a></li>
-			<li><a href="/common/join.asp">이용약관</a></li>
-			<li><a href="/common/private.asp"><strong>개인정보 처리방침</strong></a></li>
-			<li><a href="http://company.10x10.co.kr/Business/Index/" target="_blank">제휴.광고</a></li>
-			<li><a href="http://company.10x10.co.kr/Business/Index/" target="_blank">입점문의</a></li>
-			<li><a href="/common/sitemap.asp">퀵쇼핑</a></li>
-			<li><a href="http://www.10x10shop.com/" target="_blank">10x10 CHINA</a></li>
-			<!-- 2017.10.1 서비스 종료
-			<li><a href="http://www.thefingers.co.kr/" target="_blank">더핑거스</a></li>
-			-->
-		</ul>
-		<div class="footerConV15">
-			<div class="ftSnsUnitV15">
-				<p>모바일에서 텐바이텐을 만나세요.</p>
-				<p><a href="/event/appdown/" class="goLinkV15"><strong>10x10</strong> 모바일 안내</a></p>
-				<p class="appLinkV15">
-					<span><img src="http://fiximage.10x10.co.kr/web2015/layout/qrcode.gif" alt="10x10 QR CODE" /></span>
-					<span class="lPad15">
-						<a href="https://play.google.com/store/apps/details?id=kr.tenbyten.shopping" target="_blank" title="새창"><img src="http://fiximage.10x10.co.kr/web2015/layout/btn_goole.gif" alt="Google play" /></a>
-						<a href="https://itunes.apple.com/kr/app/tenbaiten/id864817011?mt=8" target="_blank" title="새창" class="tMar03"><img src="http://fiximage.10x10.co.kr/web2015/layout/btn_apple.gif" alt="APP Store" /></a>
-					</span>
-				</p>
-				<p class="tMar15"><a href="/apps/sns/" class="goLinkV15">텐바이텐 소셜 친구들</a></p>
-				<p class="snsV15">
-					<a href="https://twitter.com/your10x10" target="_blank" class="snsTwV15">트위터로 이동</a>
-					<a href="https://www.facebook.com/your10x10" target="_blank" class="snsFbV15">페이스북으로 이동</a>
-					<a href="https://instagram.com/your10x10/" target="_blank" class="snsItV15">인스타그램으로 이동</a>
-					<a href="https://www.pinterest.com/your10x10/" target="_blank" class="snsPrV15">핀터레스트로 이동</a>
-				</p>
-			</div>
-			<div class="ftMallInfoV15">
-				<p><strong>소비자피해보상보험 Usafe</strong></p>
-				<p>고객님은 안전거래를 위해 현금 등으로 결제시 저희 쇼핑몰에서 가입한 구매안전서비스 <br />(소비자피해 보상보험서비스)를 이용하실 수 있습니다. <a title="새창에서 열림" class="btn btnS6 btnGry2 lMar05" href="" onclick="usafe(2118700620); return false;" target="_blank"><span class="whiteArr01 fn">서비스 가입사실 확인</span></a></p>
-				<p class="tMar15"><strong>㈜텐바이텐</strong></p>
-				<p>서울시 종로구 대학로12길 31 자유빌딩 5층 (03086) / 대표이사 : 최은희<br />사업자등록번호 : 211-87-00620 / 통신판매업 신고번호 : 제 01-1968호<br />개인정보 보호 및 청소년 보호책임자 : 이문재  <a title="새창에서 열림" class="btn btnS6 btnGry2 lMar05" href="http://www.ftc.go.kr/info/bizinfo/communicationView.jsp?apv_perm_no=2004300010130201968&area1=&area2=&currpage=1&searchKey=01&searchVal=텐바이텐&stdate=&enddate=" target="_blank"><span class="whiteArr01 fn">사업자 정보확인</span></a><br />호스팅서비스 : (주)텐바이텐</p>
-			</div>
-			<div class="ftCsUnitV15">
-				<p><strong><img src="http://fiximage.10x10.co.kr/web2015/layout/txt_csinfo.gif" alt="고객행복센터 : 1644-6030" /></strong></p>
-				<p class="tMar15"><a href="" class="goLinkV15" onclick="myqnawrite(); return false;">1:1 문의하기</a></p>
-				<p class="tMar12">평일 9:00~18:00 / 점심시간 12:00~13:00<br />주말 및 공휴일은 1:1문의하기를 이용해주세요.<br />업무가 시작되면 바로 처리해 드립니다.<br /><strong>customer@10x10.co.kr</strong></p>
-			</div>
-		</div>
-		<p class="goTop"><span>TOP</span></p>
-	</div>
-</div>
-
-<!-- Google -->
-<script type="text/javascript">
-//  var _gaq = _gaq || [];
-//  _gaq.push(['_setAccount', 'UA-16971867-1']);
-//  _gaq.push(['_setDomainName', '10x10.co.kr']);
-   
-//  _gaq.push(['_trackPageview']);
-   
-//  (function() {
-//    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-//    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-//    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-//  })();
-</script>
 
 
 <script>
@@ -1261,16 +1198,6 @@ wcs_do(_nasa);
 	//appboy.getUser().setCustomUserAttribute('visit pcweb', new Date());
 </script>
 
-
-
-<script type="text/javascript">
-$(function(){
-	//'탑으로 가기
-	$('.footer .right2').click(function(){
-		$('html, body').animate({scrollTop:0}, 'slow');
-	;});
-});
-</script>
 
 </div>
 </body>

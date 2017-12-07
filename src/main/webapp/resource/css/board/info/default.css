@@ -5,7 +5,7 @@
 	height: auto;
 }
 
-html, body, blockquote, caption, dd, div, dl, dt, fieldset, form, frame, h1, h2, h3, h4, h5, h6, hr, iframe, input, legend, li, object, ol, p, pre, q, select, table, textarea, tr, td, ul, button {margin:0; padding:0;}
+html, body, blockquote, caption, dd, div, dl, dt, fieldset, form, frame, h1, h2, h3, h4, h5, h6, hr, iframe, input, legend, li, object, ol, p, pre, q, select, table, textarea, tr, td, ul, button {margin:0; padding:0; list-style: none;}
 ol, ul {list-style:none;}
 fieldset, img {border:0;}
 h1, h2, h3, h4, h5, h6 {font-style:normal; font-size:12px;}
