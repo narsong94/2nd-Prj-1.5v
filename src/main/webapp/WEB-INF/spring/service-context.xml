@@ -64,6 +64,7 @@
 	<bean name="VotingDao" class="com.prj.web.dao.spring.SpringVotingDao"/>
 	<bean name="AdviceDao" class="com.prj.web.dao.spring.SpringAdviceDao"/>
 	<bean name="UserDao" class="com.prj.web.dao.spring.SpringUserDao"/>
+	<bean name="HonorDao" class="com.prj.web.dao.spring.SpringHonorDao"/>
 	
 	<!-- Service 객체들 -->
 	<bean class="com.prj.web.service.admin.BoardService"/>

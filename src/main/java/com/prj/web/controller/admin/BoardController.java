@@ -32,6 +32,7 @@ import com.prj.web.entity.Drama;
 import com.prj.web.entity.DramaObject;
 import com.prj.web.entity.Dramaview;
 import com.prj.web.entity.Free;
+import com.prj.web.entity.Honor;
 import com.prj.web.entity.Imgview;
 import com.prj.web.entity.Info;
 import com.prj.web.entity.Tip;
@@ -46,71 +47,32 @@ public class BoardController {
 
 	@Autowired
 	private BoardService service;
+	
+	/*-------------- Hornor 게시판 --------------*/
 
-	/*-------------- 자유 게시판 --------------*/
+	@RequestMapping("honor")
+	public String hornor(@RequestParam(value = "q", defaultValue = "") String query, Model model) {
+		/*List<Honor> list = service.getHonorList(query);
 
-	@RequestMapping("free")
-	public String free(@RequestParam(value = "p", defaultValue = "1") int page,
-			@RequestParam(value = "q", defaultValue = "") String query, Model model) {
-		List<Free> list = service.getFreeList(page, query);
-		int count = service.getFreeCount();
-
-		model.addAttribute("list", list);
-		model.addAttribute("count", count);
-		return "admin.board.free.list";
+		model.addAttribute("list", list);*/
+		return "admin.board.honor.list";
+	}
+	
+	@RequestMapping(value = "honor/reg", method = RequestMethod.GET)
+	public String honorReg() {
+		return "admin.board.honor.reg";
 	}
 
-	@RequestMapping("free/{id}")
-	public String freeDetail(@PathVariable("id") String id, Model model) {
-
-		service.updateFreeHit(id);
-		model.addAttribute("f", service.getFree(id));
-		model.addAttribute("prev", service.getFreePrev(id));
-		model.addAttribute("next", service.getFreeNext(id));
-
-		return "admin.board.free.detail";
-	}
-
-	@RequestMapping(value = "free/{id}/edit", method = RequestMethod.GET)
-	public String freeUpdate(@PathVariable("id") String id, Model model) {
-
-		model.addAttribute("f", service.getFree(id));
-
-		return "admin.board.free.edit";
-	}
-
-	@RequestMapping(value = "free/{id}/edit", method = RequestMethod.POST)
-	public String freeUpdate(@PathVariable("id") String id, Free free) {
-
-		int update = service.freeUpdate(id, free);
-
-		return "redirect:../../free/{id}";
-	}
-
-	@RequestMapping(value = "free/reg", method = RequestMethod.GET)
-	public String freeReg() {
-		return "admin.board.free.reg";
-	}
-
-	@RequestMapping(value = "free/reg", method = RequestMethod.POST)
-	public String freeReg(Free free, MultipartFile file, HttpServletRequest request, Principal principal)
+	@RequestMapping(value = "honor/reg", method = RequestMethod.POST)
+	public String honorReg(Honor honor, MultipartFile file, HttpServletRequest request, Principal principal)
 			throws IOException {
 
-		int nextId = service.getFreeNextId();
 		String writerId = principal.getName();
-		System.out.println(writerId);
 
-		service.freeInsert(free.getTitle(), free.getContent(), writerId);
+		service.honorInsert(honor.getContent(), writerId);
+		service.honorUpdate();
 
-		return "redirect:../free";
-	}
-
-	@RequestMapping("free/{id}/del")
-	public String freeDel(@PathVariable("id") String id) {
-
-		service.freeDel(id);
-
-		return "redirect:../../free";
+		return "redirect:../honor";
 	}
 
 	/*-------------- Tip 게시판 --------------*/

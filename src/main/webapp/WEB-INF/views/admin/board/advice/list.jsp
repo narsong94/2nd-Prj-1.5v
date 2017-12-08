@@ -241,22 +241,13 @@ $(function(){
 						<div id="" class="list_title">
 							<li class="title_a">
 							<span>${advice.title}</span>
-								<!-- <span>정소민의</span>
-								 폭신한 코트가 귀여워요 -->
 							 </li>
-							
 						 </div>
-				 
 						 <div id="" class="img_list right_area">
 							 <div id="" class="img_celeb">
-<!-- 							 <img src="http://scdn.celpick.com/data/imageData/24159/24159-1.jpg?t=1512006379"> -->
 							 <img src="${advice.content}"/>
 							 
 							 </div>
-				 
-						<!-- 	 <div id="" class="img_product right_area">
-							 <img src="http://scdn.celpick.com/data/imageDataThumb/24159/gt_350_244_24159-0.jpg?t=1512006379">
-							 </div> -->
 						 </div>
 				 	</a>
 				 	
@@ -265,14 +256,6 @@ $(function(){
 							 </li>
 						
 						 </div>
-				<!-- 
-						 <div id="" class="hash_tag w100">
-							 <li>#정소민코트</li>
-							 <li>#코트</li>
-							 <li>#여자코트</li>
-							 <li>#베이지코트</li>
-							 <li>#이번생은처음이라정소민</li>
-				 		</div> -->
 				 </div>
 			 </c:forEach>
 			 <!-- -----이 부분이 반복될 예정 여기까지  -->

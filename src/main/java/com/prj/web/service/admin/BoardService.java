@@ -19,6 +19,7 @@ import com.prj.web.dao.AdviceLikeDao;
 import com.prj.web.dao.TipLikeDao;
 import com.prj.web.dao.InfoLikeDao;
 import com.prj.web.dao.UserDao;
+import com.prj.web.dao.HonorDao;
 import com.prj.web.entity.Voting;
 import com.prj.web.entity.VotingLike;
 import com.prj.web.entity.Advice;
@@ -27,10 +28,12 @@ import com.prj.web.entity.Comment;
 import com.prj.web.entity.DramaObject;
 import com.prj.web.entity.Dramaview;
 import com.prj.web.entity.Free;
+import com.prj.web.entity.Honor;
 import com.prj.web.entity.Imgview;
 import com.prj.web.entity.Info;
 import com.prj.web.entity.Tip;
 import com.prj.web.entity.User;
+
 
 public class BoardService {
 	
@@ -70,6 +73,9 @@ public class BoardService {
 	
 	@Autowired
 	private UserDao UserDao;
+	
+	@Autowired
+	private HonorDao HonorDao;
 	
 	
 	/*--------------------------------- 자유 게시판 ---------------------------------*/
@@ -450,6 +456,20 @@ public class BoardService {
 
 	public List<Adviceview> getadviceId() {
 		return AdviceDao.getAdviceId();
+	}
+	
+	/*--------------------------------- Honor 게시판 ---------------------------------*/
+	
+	public List<Honor> getHonorList(String query) {
+		return HonorDao.getHonorList(query);
+	}
+
+	public int honorInsert(String content, String writerId) {
+		return HonorDao.insert(content, writerId);
+	}
+
+	public int honorUpdate() {
+		return HonorDao.getNextId();
 	}
 
 
