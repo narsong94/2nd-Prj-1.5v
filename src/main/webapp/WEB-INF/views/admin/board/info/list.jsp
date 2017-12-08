@@ -365,7 +365,7 @@ var V_CURRENTYYYYMM = "2017-11-30";
 			
 				<h2 style="padding-left: 75px;">
 				<a href="/street/">
-				<img src="${path}/resource/img/info/TITLE/패션뉴스30.jpg" alt="BRAND STREET" /></a>
+				<img src="${path}/resource/img/info/TITLE/뉴스.png" alt="BRAND STREET" /></a>
 				
 				
 				
@@ -446,7 +446,7 @@ $(function() {
 					<div class="section brandV15">
 				<h2>
 				<a href="/street/">
-				<img src="${path}/resource/img/info/TITLE/팁35.jpg" alt="BRAND STREET" /></a>
+				<img src="${path}/resource/img/info/TITLE/팁.png" alt="BRAND STREET" /></a>
 				
 				
 				<a href="${path}/admin/board/tip/Reg"><img src="${path}/resource/img/info/추가.PNG" style="height: 30px; width:30px; "/></a>
@@ -494,7 +494,7 @@ $(function() {
 			<!--------------------------- roundBar 시작 -->
 				<div class="section roundBnrV15">
 				
-				<h2><img src="${path}/resource/img/info/TITLE/드라마30.jpg" alt="BRAND STREET" /></a>
+				<h2><img src="${path}/resource/img/info/TITLE/드라마.png" alt="BRAND STREET" /></a>
 					
 				<a href="${path}/admin/board/info/dramaReg"><img src="${path}/resource/img/info/추가.PNG" style="height: 30px; width:30px; "/></a>
 				</h2>
@@ -850,7 +850,7 @@ $(function() {
 			
 			
 			<div class="section lookV15">
-				<h2><img src="${path}/resource/img/info/TITLE/오늘 뭐 입지30.jpg" alt="LO-----OK!" /></h2>
+				<h2><img src="${path}/resource/img/info/TITLE/오늘.png" alt="LO-----OK!" /></h2>
 				<div class="lookSlideV15">
 					<ul class='lookListV15'>
 

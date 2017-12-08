@@ -69,4 +69,5 @@ public class Advice {
 		this.writerId = writerId;
 	}
 	
+	
 }

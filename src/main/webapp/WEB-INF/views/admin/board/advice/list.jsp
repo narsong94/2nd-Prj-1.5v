@@ -170,20 +170,23 @@ $(function(){
 })
 </script>
 <div class="adviceContainer">
-<h3  style="   margin-top: 0px;    padding-left: 20%;padding-top: 10px;"><img src="${ctx}/resource/img/info/TITLE/픽2.png"  />
-<a href="${ctx}/admin/board/voting/reg" ><input type="image" src="${ctx}/resource/img/등록.png"style="width:30px;height:30px;" ></a>
+<h3  style="   margin-top: 0px;    padding-left: 20%;padding-top: 15px;
+    padding-bottom: 10px;"><img src="${ctx}/resource/img/픽2.png"  />
+<a href="${ctx}/admin/board/voting/reg" ><input id="votingRegBtn" type="image" src="${ctx}/resource/img/등록2.png"style="width:30px;height:30px;" ></a>
 
 
 
 </h3>
 
+<div class="btns">
 <input type="image" alt="" class="slide-prev arrow_off"  value="0" src="//image.istarbucks.co.kr/common/img/util/mscard_arrow_l_off.png">
 <input type="image" alt="" class="slide-next arrow_off"  value="0" src="//image.istarbucks.co.kr/common/img/util/mscard_arrow_r_off.png">
+</div>
 
       
 
 <%-- <img src="${path}/resource/img/스타백.jpg" style="height: 360px; float:left;"/> --%>
-<div class="vcontainer">
+<div class="vcontainer" >
 <p id="prevBtn">
          
    </p>
@@ -217,13 +220,15 @@ $(function(){
 
 
 <div id = "content" >
+<div style="margin: 10px auto 30px auto;">
 <h2>
 
 
 	<img src="${ctx}/resource/img/info/TITLE/코디상담40.png"  />
 <a href="${ctx}/admin/board/advice/reg">
-<img src="${ctx}/resource/img/등록.PNG" style="height: 30px; width:30px; "/></a>
+<img src="${ctx}/resource/img/등록2.png" style="height: 30px; width:30px; "/></a>
 </h2>
+</div>
 	<div class="celpickz_3">
 		<div class="ajax-content">
 		
@@ -256,7 +261,7 @@ $(function(){
 				 	</a>
 				 	
 				 		<div class="likes">
-							 <li class="likes_txt">♥ ${likeNum }
+							 <li class="likes_txt">♥ ${advice.likeNum}
 							 </li>
 						
 						 </div>
@@ -349,5 +354,26 @@ $(function(){
 <div>
 	<a href="${ctx}/admin/board/advice/reg">추가하기</a>
 </div> --%>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+ $(function() {
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 200) {
+            $('#MOVE_TOP_BTN').fadeIn();
+        } else {
+            $('#MOVE_TOP_BTN').fadeOut();
+        }
+    });
+    
+    $("#MOVE_TOP_BTN").click(function() {
+        $('html, body').animate({
+            scrollTop : 0
+        }, 400);
+        return false;
+    });
+});
+
+</script>
+<a id="MOVE_TOP_BTN" href="#">TOP</a>
 
 </main>

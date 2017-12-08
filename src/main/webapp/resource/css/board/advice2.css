@@ -11,7 +11,8 @@
    overflow: hidden;
    position: relative;
         margin: auto;
-        width:1150px;
+        /* width:1150px; */
+        width: 55% !important;
 }
 .slide-prev{
    position: absolute;
@@ -115,28 +116,9 @@ button {
 /* 보팅 */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#votingRegBtn {
+	vertical-align: top; 
+}
 
 /*ê³µí†µ*/
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:600italic,700italic,100,300,400,700,600);
@@ -146,7 +128,7 @@ body{background-color:#f5f2f2;text-align:left;*word-break:break-all;-ms-word-bre
 img,fieldset,iframe{border:0 none}
 li{list-style:none}
 input,select,button{vertical-align:middle}
-img{vertical-align:top;border:0; margin-bottom:15px;}
+img{vertical-align:middle;border:0; margin-bottom:15px;}
 i,em,address{font-style:normal}
 label,button{cursor:pointer}
 button{margin:0;padding:0}
@@ -174,7 +156,7 @@ table{border-collapse:collapse;border-spacing:0}
 .sns {position:relative;float:right;width:100px}
 .sns li{height:75px;float:left;font-size:17px;margin:30px 12px 0 12px}
 
-#content {overflow: hidden;position: relative;width:100%;max-width:632px;margin:100px auto 0 auto}
+#content {overflow: hidden;position: relative;width:100%;max-width:632px;margin:100px auto 100px auto}
 #footer {background-color:#636363;color:#fff;text-align:center;font-size:13px;position:relative;width:100%;height:150px;margin-top:48px;overflow: hidden;}
 .policy {width:760px;margin:0 auto 0 auto;height:50px}
 .policy a {color:#fff}
@@ -224,7 +206,7 @@ table{border-collapse:collapse;border-spacing:0}
 .card{width:97%;max-width:600px;margin:10px auto 30px auto;    padding: 30px 15px 30px 15px;background-color:#f8f8f8;border:1px solid #cccccc;overflow:hidden}
 /*íƒ€ì´í‹€ê³¼ ì¹´ìš´í„°*/
 .list_title {width:100%;margin:0 auto 10px auto;color:#152e44;float:left;}
-.list_title li.title_a {width:75%;font-weight:400;text-align:left;font-size:18px;float:left;}
+.list_title li.title_a {width:75%;font-weight:400;text-align:left;font-size:18px;float:left;padding-left: 30px;}
 .list_title li.counter {width:25%;font-weight:400;text-align:right;font-size:14px;float:right;color:#888888;line-height:30px}
 .list_title li.counter img{margin-top:7px}
 
@@ -251,7 +233,11 @@ p.trends_title {font-weight:400;font-size:16px;color:#888;float:left;text-align:
 
 .likes {position:relative;width:100%;text-align:left;padding:10px 0 10px 0;border-bottom:1px solid #ccc;color:#555;font-size:17px;overflow:hidden;}
 .likes li {display:inline;overflow:hidden;float:left;}
-.likes li.likes_txt {width:60%;text-align:left}
+.likes li.likes_txt {    
+	width: 90%;
+    text-align: right;
+    color: #ca0f0f;
+    padding-left: 30px;}
 .likes li.reply_count {width:40%;text-align:right}
 
 .likes_d {position:relative;width:96%;text-align:left;padding:10px 2% 10px 2%;border-bottom:1px solid #ccc;color:#555;font-size:17px;overflow:hidden;}
@@ -552,7 +538,7 @@ display: -webkit-box;
 @media (max-width: 640px) {
 .card{margin:10px auto 10px auto;width:92%;padding:8% 3% 8% 3%}
 .list_title {margin:0 auto 10px auto;}
-.list_title li.title_a {font-size:14px; font-family: 'Hanna', sans-serif;}
+.list_title li.title_a {font-size:14px; font-family: 'Hanna', sans-serif; }
 .list_title li.counter {font-size:12px;line-height:18px}
 .list_title li.counter img{margin:0}
 .list_title span {font-size:20px;line-height:15px}
@@ -683,6 +669,6 @@ p.trends_title {font-size:14px;}
 }
 .adviceContainer{
    background-image:url(http://localhost/SecondPrj/resource/img/배경사진.jpg);
-	
+	    max-width: 100%;
    height:380px;
 }

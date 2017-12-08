@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.prj.web.entity.Advice;
+import com.prj.web.entity.Adviceview;
 
 public interface AdviceDao {
 	List<Advice> getList(@Param("page") int page,@Param("query") String query);
@@ -20,4 +21,5 @@ public interface AdviceDao {
 	int getNextId();
 	int delete(String id);
 	List<Advice> getPrevAdviceList(String id, Date date);
+	List<Adviceview> getAdviceId();
 }

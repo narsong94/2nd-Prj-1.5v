@@ -22,6 +22,7 @@ import com.prj.web.dao.UserDao;
 import com.prj.web.entity.Voting;
 import com.prj.web.entity.VotingLike;
 import com.prj.web.entity.Advice;
+import com.prj.web.entity.Adviceview;
 import com.prj.web.entity.Comment;
 import com.prj.web.entity.DramaObject;
 import com.prj.web.entity.Dramaview;
@@ -445,6 +446,10 @@ public class BoardService {
 
 	public int  adviceLikeCheck(String advice_id, String writer_id) {
 		return AdviceLikeDao.check(advice_id,writer_id);
+	}
+
+	public List<Adviceview> getadviceId() {
+		return AdviceDao.getAdviceId();
 	}
 
 

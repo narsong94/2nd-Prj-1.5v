@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.prj.web.entity.Advice;
+import com.prj.web.entity.Adviceview;
 import com.prj.web.entity.Comment;
 import com.prj.web.entity.Drama;
 import com.prj.web.entity.DramaObject;
@@ -587,7 +588,8 @@ public class BoardController {
 	public String advice(@RequestParam(value = "p", defaultValue = "1") int page,
 			@RequestParam(value = "q", defaultValue = "") String query, Model model) {
 
-		List<Advice> list = service.getAdviceList(page, query);
+		//List<Advice> list = service.getAdviceList(page, query);
+		List<Adviceview> adviceInfo = service.getadviceId();
 		int count = service.getAdviceCount();
 		List<Voting> vlist = service.getVotingList(page, query);
 		List<String> votingPics = null;
@@ -602,7 +604,7 @@ public class BoardController {
 		}
 
 		model.addAttribute("vList", vlist);
-		model.addAttribute("list", list);
+		model.addAttribute("list", adviceInfo);
 		model.addAttribute("count", count);
 		return "admin.board.advice.list";
 	}
