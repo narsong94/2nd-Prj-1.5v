@@ -25,6 +25,7 @@ import com.prj.web.entity.VotingLike;
 import com.prj.web.entity.Advice;
 import com.prj.web.entity.Adviceview;
 import com.prj.web.entity.Comment;
+import com.prj.web.entity.Drama;
 import com.prj.web.entity.DramaObject;
 import com.prj.web.entity.Dramaview;
 import com.prj.web.entity.Free;
@@ -286,6 +287,19 @@ public class BoardService {
 	public int infoLikecount(String info_id, String writer_id) {
 		return  InfoLikeDao.Count(info_id,writer_id);
 	}
+
+
+	public Drama getDramaInfo(String id) {
+		return InfoDao.getDramaInfo(id);
+	}
+
+	public Drama getInfoDramaPrev(String id) {
+		return InfoDao.getInfoDramaPrev(id);
+	}
+
+	public Drama getInfoDramaNext(String id) {
+		return InfoDao.getInfoDramaNext(id);
+	}
 	
 	/*--------------------------------- Voting °Ô½ÃÆÇ ---------------------------------*/
 
@@ -471,6 +485,7 @@ public class BoardService {
 	public int honorUpdate() {
 		return HonorDao.getNextId();
 	}
+
 
 
 }

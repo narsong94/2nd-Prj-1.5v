@@ -213,16 +213,16 @@ public class SpringInfoDao implements InfoDao, InfoCommentDao, InfoLikeDao {
 
 	@Override
 	public int dramaInsert(Drama drama) {
-		String sql = "insert into Drama(id, name, content, writerId) values(?, ?, ?, ?);";
+		String sql = "insert into Drama(id, title, content, writerId) values(?, ?, ?, ?);";
 
-		int insert = template.update(sql, getDramaNextId(), drama.getName(), drama.getContent(), drama.getWriterId());
+		int insert = template.update(sql, getDramaNextId(), drama.getTitle(), drama.getContent(), drama.getWriterId());
 
 		return insert;
 	}
 
 	@Override
-	public int dramaInsert(String name, String content, String writerId) {
-		return dramaInsert(new Drama(name, content, writerId));
+	public int dramaInsert(String title, String content, String writerId) {
+		return dramaInsert(new Drama(title, content, writerId));
 	}
 
 	@Override
@@ -343,5 +343,36 @@ public class SpringInfoDao implements InfoDao, InfoCommentDao, InfoLikeDao {
 	         return 0;
 	      }
 	   }
+
+
+	@Override
+	public Drama getDramaInfo(String id) {
+		String sql = "select * from Drama where id = ?";
+
+		Drama drama = template.queryForObject(sql, new Object[] { id }, BeanPropertyRowMapper.newInstance(Drama.class));
+		return drama;
+	}
+
+	@Override
+	public Drama getInfoDramaPrev(String id) {
+		String sql = "select * from Drama where id < CAST(? as UNSIGNED) order by id DESC limit 1";
+
+		try {
+			return template.queryForObject(sql, new Object[] { id }, BeanPropertyRowMapper.newInstance(Drama.class));
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
+	@Override
+	public Drama getInfoDramaNext(String id) {
+		String sql = "select * from Drama where id > CAST(? as UNSIGNED) order by id ASC limit 1";
+
+		try {
+			return template.queryForObject(sql, new Object[] { id }, BeanPropertyRowMapper.newInstance(Drama.class));
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
 
 }

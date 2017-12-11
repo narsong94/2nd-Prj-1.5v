@@ -8,7 +8,6 @@
 
 <div id="menu">
 	<ul>
-		<img id="icon" src="" />
 		<%-- <c:if test="${ empty sessionScope.id }"> --%>
 		<security:authorize access="!hasRole('ROLE_MEMBER') and !hasRole('ROLE_ADMIN')">
 			<li><a class="menu-selector" href="${path}/login">Login</a></li>

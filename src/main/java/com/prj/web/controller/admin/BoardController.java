@@ -52,9 +52,9 @@ public class BoardController {
 
 	@RequestMapping("honor")
 	public String hornor(@RequestParam(value = "q", defaultValue = "") String query, Model model) {
-		/*List<Honor> list = service.getHonorList(query);
+		List<Honor> list = service.getHonorList(query);
 
-		model.addAttribute("list", list);*/
+		model.addAttribute("list", list);
 		return "admin.board.honor.list";
 	}
 	
@@ -70,7 +70,7 @@ public class BoardController {
 		String writerId = principal.getName();
 
 		service.honorInsert(honor.getContent(), writerId);
-		service.honorUpdate();
+		//service.honorUpdate();
 
 		return "redirect:../honor";
 	}
@@ -304,6 +304,16 @@ public class BoardController {
 	}
 	
 	//드라마속 옷 등록
+	@RequestMapping("info/drama/{id}")
+	public String infoDramaDetail(@PathVariable("id") String id, Model model, Principal principal) {
+
+		model.addAttribute("d", service.getDramaInfo(id));
+		model.addAttribute("prev", service.getInfoDramaPrev(id));
+		model.addAttribute("next", service.getInfoDramaNext(id));
+	
+		return "admin.board.info.drama-detail";
+	}
+	
 	@RequestMapping(value="info/dramaReg", method=RequestMethod.GET)
 	public String dramaReg() {
 	    return "admin.board.info.dramaReg";
@@ -314,7 +324,7 @@ public class BoardController {
 			
 		service.getDramaNextId();
 		String writerId = principal.getName();
-		service.infoDramaInsert(drama.getName(), drama.getContent(), writerId);
+		service.infoDramaInsert(drama.getTitle(), drama.getContent(), writerId);
 			
 		return "redirect:../info";
 			

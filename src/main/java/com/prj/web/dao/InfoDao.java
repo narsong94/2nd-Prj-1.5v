@@ -43,4 +43,10 @@ public interface InfoDao {
 	List<Dramaview> getDramaId();
 
 	List<DramaObject> getDramaList(int page);
+
+	Drama getDramaInfo(String id);
+
+	Drama getInfoDramaPrev(String id);
+
+	Drama getInfoDramaNext(String id);
 }

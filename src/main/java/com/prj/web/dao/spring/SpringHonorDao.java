@@ -18,6 +18,7 @@ public class SpringHonorDao implements HonorDao{
 	
 	@Override
 	public List<Honor> getHonorList(String query) {
+		
 		String sql = "select id from Honor where tag like ? order by date DESC";
 		
 		List<String> list = template.queryForList(sql,new Object[] {query}, String.class);
@@ -29,7 +30,7 @@ public class SpringHonorDao implements HonorDao{
 			System.out.println("title : " +getHonorTag(list.get(i)));
 			
 			//insert
-			update(list.get(i),getHonorImgsrc(list.get(i)),getHonorTag(list.get(i)), getLikeNum(list.get(i)));
+			//update(list.get(i),getHonorImgsrc(list.get(i)),getHonorTag(list.get(i)), getLikeNum(list.get(i)));
 
 		}
 
@@ -54,14 +55,14 @@ public class SpringHonorDao implements HonorDao{
 						honor.getContent(), 
 						honor.getWriterId());	
 		
-		/*String id = Integer.toString(honor.getId());
-		
-		try {
-			update(id,getHonorImgsrc(id),"dd", getLikeNum(id));
-		} catch(Exception e) {
-			System.out.println("¿©±â³Ä?!?!?!?!");
-		}*/
-				
+		String id = Integer.toString(honor.getId());
+		if(insert == 1) {
+			try {
+				update(id,getHonorImgsrc(id),"dd", getLikeNum(id));
+			} catch(Exception e) {
+				System.out.println("¿©±â³Ä?!?!?!?!");
+			}
+		}
 		return insert;
 	}
 	
@@ -140,7 +141,8 @@ public class SpringHonorDao implements HonorDao{
 		String sql = "select content from Honor where id= ?";
 		String next = template.queryForObject(sql, new Object[] {id}, String.class);
 		//content¸¸ °¡²¿¿Í¼­
-		Pattern nonValidPattern = Pattern.compile("\\#([0-9a-zA-z°¡-ÆR]*)");	
+		System.out.println(next);
+		Pattern nonValidPattern = Pattern.compile("/(#[^]+)/");	//'/(#[^]+)/   \\#([0-9a-zA-z°¡-ÆR]*)
 		int imgCnt = 0;
 		String content = "";
 		String str = "";
@@ -162,6 +164,7 @@ public class SpringHonorDao implements HonorDao{
 		String sql = "select content from Honor where id= ?";
 		String next = template.queryForObject(sql, new Object[] {id}, String.class);
 		//content¸¸ °¡²¿¿Í¼­
+		System.out.println("ÀÌ¹ÌÁö Áß°£");
 		Pattern nonValidPattern = Pattern
 		  		.compile("<img[^>]*src=[\\\"']?([^>\\\"']+)[\\\"']?[^>]*>");
 		int imgCnt = 0;

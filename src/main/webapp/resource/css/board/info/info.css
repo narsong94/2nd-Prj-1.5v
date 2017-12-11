@@ -638,7 +638,15 @@ a.cal_click:hover {
 	    border-radius: 5px;
 }
 
-.titleWrap .dateImg {
+.titleWrap2 {
+	max-width: 100%;
+	background: #836aa5;
+	padding-bottom: 14px;
+	margin-bottom: 3px;
+	    border-radius: 5px;
+}
+
+.titleWrap .dateImg, .titleWrap2 .dateImg {
 	float: left;
 	width: 44px;
 	margin-top: 20px;
@@ -647,22 +655,28 @@ a.cal_click:hover {
 	color: #fff;
 }
 
-.titleWrap .dateImg img {
+.titleWrap .dateImg img, .titleWrap2 .dateImg img {
 	margin-left: 2px;
 	margin-bottom: -2px;
 }
 
-.titleWrap .dateImg .imgdate {
+.titleWrap .dateImg .imgdate, .titleWrap2 .dateImg .imgdate {
 	display: none;
 }
 
-.titleWrap h2 {
+.titleWrap h2{
 	float: left;
 	margin: 16px 0 0 13px;
 	width: 625px
 }
 
-.titleWrap h2 a {
+.titleWrap2 h2 {
+	float: left;
+	padding: 16px 0 0 13px;
+	width: 625px
+}
+
+.titleWrap h2 a, .titleWrap2 h2 a {
 	display: block;
 	margin-bottom: 1px;
 	font: bold 22px sans-serif;
@@ -670,7 +684,8 @@ a.cal_click:hover {
 	text-decoration: none;
 }
 
-.titleWrap h2 .date, .titleWrap h2 .category, .titleWrap h2 .category a
+.titleWrap h2 .date, .titleWrap h2 .category, .titleWrap h2 .category a,
+.titleWrap2 h2 .date, .titleWrap2 h2 .category, .titleWrap2 h2 .category a
 	{
 	font: normal 12px/14px Dotum, Helvetica, Arial, sans-serif;
 	color: #fff;
@@ -679,7 +694,7 @@ a.cal_click:hover {
 	display: inline;
 }
 
-.titleWrap h2 .category a {
+.titleWrap h2 .category a, .titleWrap2 h2 .category a {
 	padding-right: 0;
 	padding-bottom: 0;
 }
